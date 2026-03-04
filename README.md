@@ -84,14 +84,11 @@ Security and privacy (practical):
 3. Avoid sharing process URLs in open channels.
 4. Redact personal IDs when sharing screenshots.
 
-![Internal login page with key fields highlighted in red](assets/01-login-page.png)
+![Internal login page with key fields highlighted in red](assets/01-login-username.png)
 *Figure: Internal portal login. Red outlines show the fields/actions used in this guide.*
 
-### Common mistakes & fixes
-1. Mistake: opening external portal to create processes.
-2. Fix: process creation is in internal portal.
-3. Mistake: assuming all roles see management pages.
-4. Fix: management is role-gated (`int-portal-admin`).
+![Login submit button focused](assets/02-login-button.png)
+*Figure: Click this button to sign in after entering credentials.*
 
 ### Related sections
 1. [Quick Start For Initiators (3-5 Minutes)](#quick-start-for-initiators-3-5-minutes)
@@ -123,16 +120,8 @@ Do this -> You will see this -> If not, do this:
 2. You will see this: success notification and process success modal.
 3. If not: check required fields, then check error toast (common: missing mandatory fields or invalid personal data format).
 
-![Create process screen with key controls highlighted](assets/02-home-create-process.png)
+![Create process screen with key controls highlighted](assets/10-start-process-button.png)
 *Figure: Create process page. Red outlines mark the key controls for first-time users.*
-
-### Common mistakes & fixes
-1. Mistake: forgetting recipient email.
-2. Fix: email is required for notification and flow continuation.
-3. Mistake: wrong anonymous setting.
-4. Fix: if non-anonymous, ensure personal value is provided and valid for country/method.
-5. Mistake: no records visible after creation.
-6. Fix: open `History`, set `Status = Completed` for historical data; use `Started` for active/new.
 
 ### Related sections
 1. [Initiating A Signing Process (Deep Dive)](#initiating-a-signing-process-deep-dive)
@@ -151,7 +140,7 @@ Do this -> You will see this -> If not, do this:
 2. You will see this: options like `Asice` may appear.
 3. If not: confirm file type; non-PDF behavior differs.
 
-![After upload: container name, type and signer setup zones highlighted](assets/03-home-after-upload.png)
+![After upload: container name, type and signer setup zones highlighted](assets/03-container-name.png)
 *Figure: After document upload. Red outlines show where to set container/type/initiator and start recipient setup.*
 
 ### 2) Sign as PDF vs container behavior
@@ -167,7 +156,7 @@ Configuration-dependent:
 2. Verify in UI by uploading one PDF and checking whether `Asice` is toggleable.
 
 ### 3) Document type
-1. `Document type` is required.
+1. Document type is required.
 2. Visible values depend on configured document profiles.
 3. First type may be auto-selected (config option).
 
@@ -176,13 +165,16 @@ Configuration-dependent:
 1. Which types appear and which attributes are required come from backend profile configuration.
 2. Verify by opening the dropdown and checking available values.
 
+![Document type selector focused](assets/04-document-type.png)
+*Figure: Document type selector highlighted.*
+
 ### 4) Initiator email
 1. `Your email` is pre-filled from logged-in profile in most setups.
 2. Keep it valid; notifications and process metadata rely on it.
 
 ### 5) Recipient setup
 #### Add manually
-1. In `Recipient groups`, click `Add signer`.
+1. In Recipient groups, click Add signer.
 2. Fill:
 3. Full name
 4. Email
@@ -192,6 +184,15 @@ Configuration-dependent:
 8. Optional recipient comment
 9. Optional recipient notification toggle
 10. Optional signer language
+
+![Add signer button focused](assets/05-add-signer-button.png)
+*Figure: Use this button to add a recipient row.*
+
+![Recipient name field focused](assets/06-recipient-name.png)
+*Figure: Recipient full name field highlighted.*
+
+![Recipient email field focused](assets/07-recipient-email.png)
+*Figure: Recipient email field highlighted.*
 
 #### Add from Contacts
 1. Click `Select contact` in group header.
@@ -222,11 +223,8 @@ Configuration-dependent:
 2. Anonymous unchecked: personal identifier required.
 3. Use anonymous only when your process policy allows it.
 
-![Recipient fields with role/country/personal/anonymous options highlighted](assets/04-recipient-fields.png)
-*Figure: Recipient setup details. Red outlines show the fields most users ask about.*
-
 ### 6) Comments
-1. Process-level comment: `Comment for all recipients`.
+1. Process-level comment: Comment for all recipients.
 2. Recipient-level comment: inside signer row (comment icon).
 3. Recipient-level comment can be updated later in process edit, depending on status/editability.
 
@@ -239,18 +237,24 @@ Configuration-dependent:
 1. Reminder behavior is backend policy-driven; UI sets due date but reminder schedule may be service-configured.
 2. Verify reminder policy with admin/ops.
 
+![Group due date control focused](assets/08-group-due-date.png)
+*Figure: Group due date picker highlighted.*
+
 ### 8) Sign First
-1. `Sign first` checkbox is available in process comment section.
+1. Sign first checkbox is available in process comment section.
 2. When enabled, initiator signing is expected earlier in the flow.
 
 Configuration-dependent:
 
 1. Exact runtime behavior can vary by backend process policy.
-2. Verify by running a test process with and without `Sign first`.
+2. Verify by running a test process with and without Sign first.
+
+![Sign first checkbox focused](assets/09-sign-first.png)
+*Figure: Sign first option highlighted.*
 
 ### 9) Start process
-1. `Save as draft` creates draft process.
-2. `Start signing process` starts active flow.
+1. Save as draft creates draft process.
+2. Start signing process starts active flow.
 3. Success modal offers quick navigation.
 
 Email behavior:
@@ -258,13 +262,8 @@ Email behavior:
 1. Recipients receive notifications according to process and signer notification settings.
 2. In multi-group flows, later groups are typically engaged after previous step completion.
 
-### Common mistakes & fixes
-1. Mistake: trying to add personal code while anonymous is checked.
-2. Fix: uncheck anonymous if personal data is required.
-3. Mistake: setting wrong recipient role.
-4. Fix: confirm with process owner before start; role changes later may be limited by status.
-5. Mistake: expecting all groups to activate immediately.
-6. Fix: groups are step-based; only current step recipients proceed.
+![Start signing process button focused](assets/10-start-process-button.png)
+*Figure: Start signing process button highlighted.*
 
 ### Related sections
 1. [Contacts And Templates](#contacts-and-templates)
@@ -310,12 +309,6 @@ Best practices:
 2. Keep one template per major workflow variant.
 3. Review templates quarterly to remove stale versions.
 
-### Common mistakes & fixes
-1. Mistake: saving template with temporary values that should be blank.
-2. Fix: review before saving (especially comments and recipients).
-3. Mistake: cannot see expected scope option.
-4. Fix: scope is likely disabled by configuration; confirm with admin.
-
 ### Related sections
 1. [Initiating A Signing Process (Deep Dive)](#initiating-a-signing-process-deep-dive)
 2. [User And Access Management](#user-and-access-management)
@@ -357,16 +350,8 @@ Do this -> You will see this -> If not, do this:
 1. When available, recipient can download signed output from process page.
 2. Download behavior may vary by role and process status.
 
-![External portal view with signer-facing controls highlighted](assets/08-external-portal.png)
+![External recipient page focused](assets/15-external-recipient-view.png)
 *Figure: External portal recipient view. Red outlines show the signer-facing areas referenced in this section.*
-
-### Common mistakes & fixes
-1. Mistake: invitation link expired.
-2. Fix: ask initiator to restart/update process.
-3. Mistake: unsupported signing method in chosen country.
-4. Fix: switch country/method if allowed, otherwise contact initiator.
-4. Mistake: cannot continue after authentication.
-5. Fix: refresh once, retry in clean browser session, then escalate with timestamp.
 
 ### Related sections
 1. [Troubleshooting](#troubleshooting)
@@ -388,7 +373,7 @@ Important practical tip:
 
 1. If list looks empty or sparse, set `Status = Completed` to quickly view historical data.
 
-![History filters with focus on status/date/document type](assets/05-history-filters.png)
+![History status filter focused](assets/11-history-status-filter.png)
 *Figure: History filter panel. Red outlines show the exact filters to use when finding data.*
 
 ### 2) Statuses (verified current set)
@@ -404,7 +389,7 @@ Main process-level statuses in current internal UI enum/filter:
 
 You may also see signer-level/status labels like `DECLINED`, `PENDING`, `WAITING_FOR_PROCESS` in details and localized UI text.
 
-![History with Completed filter applied](assets/06-history-completed.png)
+![Completed list row focused](assets/12-history-completed-list.png)
 *Figure: Example with `Completed` filter. Use this first when validating historical data visibility.*
 
 ### 3) Open process details
@@ -430,8 +415,11 @@ In active (not completed/canceled) process view, you can usually:
 8. Start process if currently `Draft`
 9. Complete process if status is `Finished`
 
-![Process detail view with action buttons and signer details highlighted](assets/07-process-detail.png)
-*Figure: Process detail screen. Red outlines show where to download, sign, update, or cancel.*
+![Process Update action focused](assets/13-process-update.png)
+*Figure: Update action focused for ongoing process edits.*
+
+![Process Cancel action focused](assets/14-process-cancel.png)
+*Figure: Cancel action focused for stopping an active process.*
 
 ### 5) Deleting from history / deleting archive document
 Configuration-dependent and version-dependent:
@@ -443,14 +431,6 @@ How to confirm:
 
 1. Open process detail and history actions in your tenant.
 2. If no delete button exists, treat deletion as admin/support operation.
-
-### Common mistakes & fixes
-1. Mistake: expecting to edit completed process recipients.
-2. Fix: completed/canceled/e-sealed processes are read-only for main edit actions.
-3. Mistake: confusion between `Cancel` and `Delete`.
-4. Fix: cancel is a workflow action; delete is not standard in current end-user UI.
-5. Mistake: no data visible.
-6. Fix: set filter to `Completed`, widen date range, clear text filters.
 
 ### Related sections
 1. [Troubleshooting](#troubleshooting)
@@ -519,12 +499,6 @@ Provide:
 5. Exact action and error text
 6. Screenshot (redacted)
 
-### Common mistakes & fixes
-1. Mistake: retrying same broken step without checking status/state.
-2. Fix: verify status and group progression first.
-3. Mistake: filing ticket without process identifier.
-4. Fix: always include process ID/container name.
-
 ### Related sections
 1. [Tracking And Managing Processes (History)](#tracking-and-managing-processes-history)
 2. [FAQ](#faq)
@@ -555,10 +529,6 @@ Provide:
 15. Can recipient comments be seen by initiator?
 16. Decline/recipient comment visibility appears in process details where captured.
 
-### Common mistakes & fixes
-1. Mistake: assuming all environments have identical methods/roles.
-2. Fix: check config-dependent notes and verify in your tenant.
-
 ### Related sections
 1. [Initiating A Signing Process (Deep Dive)](#initiating-a-signing-process-deep-dive)
 2. [Recipient Guide: How To Sign A Received Document](#recipient-guide-how-to-sign-a-received-document)
@@ -583,10 +553,6 @@ Where to get help:
 
 1. Your internal support desk with process ID and timestamp.
 2. TrustLynx support escalation path (per company policy).
-
-### Common mistakes & fixes
-1. Mistake: trying to solve role/config issues only in browser.
-2. Fix: involve admin for tenant-level configuration changes.
 
 ### Related sections
 1. [Troubleshooting](#troubleshooting)
@@ -702,4 +668,5 @@ Transcript and checks:
 6. Exact reminder timing is backend-policy-dependent.
 7. Recommended improvement:
 8. Add tenant screenshots and one real recipient walkthrough per country/method in your production docs portal revision.
+
 
