@@ -99,7 +99,7 @@ images:
     annotations:
       - step: 14
         label: Country dropdown (open)
-        rect: [356, 488, 74, 190]
+        rect: [430, 603, 94, 245]
 
   - input: assets/04-recipient-fields__select-contact-open.png
     output: assets/annotated/step-15-select-contact-open.png

@@ -6,61 +6,41 @@ default_font_size: 20
 images:
   - input: assets/02-home-create-process.png
     output: assets/02-home-create-process.png
-    regions:
-      - rect: [868, 461, 728, 42]
-        text: initiator@example.com
+    regions: []
 
   - input: assets/03-home-after-upload__doctype-open.png
     output: assets/03-home-after-upload__doctype-open.png
     regions:
-      - rect: [95, 308, 280, 32]
-        text: Sample-Contract-01.pdf
-      - rect: [98, 381, 260, 32]
-        text: Sample-Contract-01.asice
-      - rect: [868, 591, 728, 42]
-        text: initiator@example.com
+      - rect: [86, 286, 500, 150]
+        text: ""
 
   - input: assets/03-home-after-upload__template-open.png
     output: assets/03-home-after-upload__template-open.png
     regions:
-      - rect: [95, 308, 280, 32]
-        text: Sample-Contract-01.pdf
-      - rect: [98, 381, 260, 32]
-        text: Sample-Contract-01.asice
-      - rect: [868, 591, 728, 42]
-        text: initiator@example.com
+      - rect: [86, 286, 500, 150]
+        text: ""
 
   - input: assets/04-recipient-fields.png
     output: assets/04-recipient-fields.png
     regions:
-      - rect: [95, 308, 280, 32]
-        text: NDA_Test.pdf
-      - rect: [98, 381, 260, 32]
-        text: NDA_Test.asice
-      - rect: [868, 591, 728, 42]
-        text: initiator@example.com
+      - rect: [86, 286, 500, 150]
+        text: ""
 
   - input: assets/04-recipient-fields__country-open.png
     output: assets/04-recipient-fields__country-open.png
     regions:
-      - rect: [95, 308, 280, 32]
-        text: NDA_Test.pdf
-      - rect: [98, 381, 260, 32]
-        text: NDA_Test.asice
-      - rect: [868, 591, 728, 42]
-        text: initiator@example.com
+      - rect: [86, 286, 500, 150]
+        text: ""
 
   - input: assets/04-recipient-fields__select-contact-open.png
     output: assets/04-recipient-fields__select-contact-open.png
     regions:
-      - rect: [95, 308, 280, 32]
-        text: Invoice_Test_2026-01.pdf
-      - rect: [98, 381, 260, 32]
-        text: Invoice_Test_2026-01.asice
-      - rect: [868, 591, 728, 42]
-        text: initiator@example.com
+      - rect: [86, 286, 500, 150]
+        text: ""
       - rect: [317, 317, 715, 390]
         text: Sample contacts list (redacted)
+      - rect: [300, 700, 760, 95]
+        text: ""
 
   - input: assets/05-history-filters.png
     output: assets/05-history-filters.png
