@@ -38,7 +38,6 @@ SignBox is a web-based platform for preparing, sending, signing, and tracking el
 11. [Glossary](#glossary)
 12. [New User Simulation (Nina) + Coverage Check](#new-user-simulation-nina--coverage-check)
 13. [Coverage Report](#coverage-report)
-14. [References](#references)
 
 ## Terminology
 Use these terms consistently:
@@ -85,6 +84,9 @@ Security and privacy (practical):
 3. Avoid sharing process URLs in open channels.
 4. Redact personal IDs when sharing screenshots.
 
+![Internal login page with key fields highlighted in red](assets/01-login-page.png)
+*Figure: Internal portal login. Red outlines show the fields/actions used in this guide.*
+
 ### Common mistakes & fixes
 1. Mistake: opening external portal to create processes.
 2. Fix: process creation is in internal portal.
@@ -121,6 +123,9 @@ Do this -> You will see this -> If not, do this:
 2. You will see this: success notification and process success modal.
 3. If not: check required fields, then check error toast (common: missing mandatory fields or invalid personal data format).
 
+![Create process screen with key controls highlighted](assets/02-home-create-process.png)
+*Figure: Create process page. Red outlines mark the key controls for first-time users.*
+
 ### Common mistakes & fixes
 1. Mistake: forgetting recipient email.
 2. Fix: email is required for notification and flow continuation.
@@ -145,6 +150,9 @@ Do this -> You will see this -> If not, do this:
 1. Do this: upload one PDF.
 2. You will see this: options like `Asice` may appear.
 3. If not: confirm file type; non-PDF behavior differs.
+
+![After upload: container name, type and signer setup zones highlighted](assets/03-home-after-upload.png)
+*Figure: After document upload. Red outlines show where to set container/type/initiator and start recipient setup.*
 
 ### 2) Sign as PDF vs container behavior
 Current verified behavior:
@@ -213,6 +221,9 @@ Configuration-dependent:
 1. Anonymous checked: personal identifier not required in form.
 2. Anonymous unchecked: personal identifier required.
 3. Use anonymous only when your process policy allows it.
+
+![Recipient fields with role/country/personal/anonymous options highlighted](assets/04-recipient-fields.png)
+*Figure: Recipient setup details. Red outlines show the fields most users ask about.*
 
 ### 6) Comments
 1. Process-level comment: `Comment for all recipients`.
@@ -346,6 +357,9 @@ Do this -> You will see this -> If not, do this:
 1. When available, recipient can download signed output from process page.
 2. Download behavior may vary by role and process status.
 
+![External portal view with signer-facing controls highlighted](assets/08-external-portal.png)
+*Figure: External portal recipient view. Red outlines show the signer-facing areas referenced in this section.*
+
 ### Common mistakes & fixes
 1. Mistake: invitation link expired.
 2. Fix: ask initiator to restart/update process.
@@ -374,6 +388,9 @@ Important practical tip:
 
 1. If list looks empty or sparse, set `Status = Completed` to quickly view historical data.
 
+![History filters with focus on status/date/document type](assets/05-history-filters.png)
+*Figure: History filter panel. Red outlines show the exact filters to use when finding data.*
+
 ### 2) Statuses (verified current set)
 Main process-level statuses in current internal UI enum/filter:
 
@@ -386,6 +403,9 @@ Main process-level statuses in current internal UI enum/filter:
 7. `ALL`
 
 You may also see signer-level/status labels like `DECLINED`, `PENDING`, `WAITING_FOR_PROCESS` in details and localized UI text.
+
+![History with Completed filter applied](assets/06-history-completed.png)
+*Figure: Example with `Completed` filter. Use this first when validating historical data visibility.*
 
 ### 3) Open process details
 From History table, click row to open details. Typical details include:
@@ -409,6 +429,9 @@ In active (not completed/canceled) process view, you can usually:
 7. Cancel process (with notify checkbox)
 8. Start process if currently `Draft`
 9. Complete process if status is `Finished`
+
+![Process detail view with action buttons and signer details highlighted](assets/07-process-detail.png)
+*Figure: Process detail screen. Red outlines show where to download, sign, update, or cancel.*
 
 ### 5) Deleting from history / deleting archive document
 Configuration-dependent and version-dependent:
@@ -435,7 +458,7 @@ How to confirm:
 
 ## Troubleshooting
 
-### 1) “Info disappeared while creating process”
+### 1) "Info disappeared while creating process"
 Likely causes:
 
 1. Session timeout
@@ -679,13 +702,4 @@ Transcript and checks:
 6. Exact reminder timing is backend-policy-dependent.
 7. Recommended improvement:
 8. Add tenant screenshots and one real recipient walkthrough per country/method in your production docs portal revision.
-
-## References
-1. Old baseline manual: `https://developer.trustlynx.com/docs/SignBox%20User%20Manual`
-2. Current internal UI source verification:
-3. `C:\Repos\signing-frontend\apps\internal\src\app\...`
-4. Current TrustLynx environment config verification:
-5. `C:\Repos\trustlynx-infra-tools\conf-management\group_vars\trustlynx_signbox.yml`
-6. `C:\Repos\trustlynx-infra-tools\conf-management\signbox\playbooks\roles\docker_compose_internal_portal\templates\env.j2`
-7. `C:\Repos\trustlynx-infra-tools\conf-management\signbox\playbooks\roles\docker_compose_external_portal\templates\config.js.j2`
 
