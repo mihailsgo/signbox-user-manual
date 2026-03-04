@@ -36,7 +36,7 @@ Goal: create a signing process in 3-5 minutes.
 </p>
 
 ## Step 4 - Fill recipient basics
-- **Action**: Add signer and fill name, email, role, and anonymous setting.
+- **Action**: Add signer and fill name, email, role, and anonymous setting. Set `Do not notify` only if you intentionally want to suppress assignment notification for that signer row.
 - **Expected result**: Recipient row has no validation errors.
 - **If not**: Re-check email format and required fields.
 - **Screenshot**:

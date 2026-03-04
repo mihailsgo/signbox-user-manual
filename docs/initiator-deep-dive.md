@@ -1,4 +1,4 @@
-# Initiator Deep Dive 🧠
+﻿# Initiator Deep Dive 🧠
 
 This page explains each creation field in detail.
 
@@ -35,6 +35,26 @@ This page explains each creation field in detail.
   <br><em>Figure 3 — Recipient fields for signer setup.</em>
 </p>
 
+### `Do not notify` checkbox (recipient row)
+- Purpose: suppress recipient assignment notification for that signer row.
+- UI mapping: checkbox label is `Do not notify` in create form.
+- Payload mapping: this field is stored as `signerNotification`.
+- Current behavior (code-verified):
+  - On normal step activation, task-start emails are still sent when a step starts.
+  - `signerNotification` is used when recipients are added or updated on already started steps (history update flow).
+  - For cancel flow, a separate `Notify` option controls cancellation notifications.
+
+### `Load by AI` button
+- Purpose: extract potential signers from uploaded PDF files and prefill recipients faster.
+- Availability: shown only when AI feature is enabled in tenant config (`VITE_AI_FEATURES_ENABLED=true`).
+- How it works:
+  - Upload document first.
+  - Click `Load by AI`.
+  - The UI sends uploaded files to AI endpoint (`/api/ai/signatories`).
+  - Select parsed people in the modal and confirm.
+  - Selected entries are added to current recipient group.
+- Practical note: AI suggestions should be reviewed and corrected before starting the process.
+
 ## Step 4 - Country dropdown
 - **Action**: Open `Country` and pick recipient country.
 - **Expected result**: Country value is selected in row.
@@ -45,6 +65,15 @@ This page explains each creation field in detail.
   <img src="../assets/annotated/step-14-country-open.png" width="900" alt="Country dropdown open">
   <br><em>Figure 4 — Country dropdown opened with options.</em>
 </p>
+
+### `Asice` checkbox (container format)
+- Purpose: control output container type for uploaded content.
+- When `Asice` is checked: resulting container name uses `.asice`.
+- When `Asice` is not checked and input is single PDF: output can remain `.pdf`.
+- Automatic override rules (code-verified):
+  - If multiple files are uploaded, process is forced to ASiC-E container.
+  - If container or document name ends with `.asice`, ASiC-E is enforced.
+  - In tenants with ASiC-only policy enabled, checkbox can be disabled and always true.
 
 ## Step 5 - Anonymous checkbox
 - **Action**: Set `Anonymous` based on your process policy.
@@ -76,7 +105,7 @@ This page explains each creation field in detail.
 - Cannot open:
   - User without the correct invitation link.
   - Non-anonymous recipient with mismatching `personalCode` or `country`.
-  - Any recipient when process/step status no longer allows signing (for example canceled/expired flow conditions).
+  - Any recipient when process or step status no longer allows signing (for example canceled or expired flow conditions).
 
 > [!WARNING]
 > Use `Anonymous` only if your organization policy allows identity flow without personal code.
@@ -105,7 +134,7 @@ This page explains each creation field in detail.
 
 ## Step 8 - Start process
 - **Action**: Click `Start signing process`.
-- **Expected result**: Process starts and invitations are sent per workflow.
+- **Expected result**: Process starts and invitations are prepared for current workflow step.
 - **If not**: Resolve validation errors first.
 - **Screenshot**:
 
