@@ -13,7 +13,7 @@ from pathlib import Path
 from typing import Any
 
 import yaml
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
 
 def load_font(size: int) -> ImageFont.ImageFont:
@@ -54,6 +54,14 @@ def draw_redaction(draw: ImageDraw.ImageDraw, image: Image.Image, region: dict[s
     x, y, w, h = region["rect"]
     text = str(region.get("text", "REDACTED"))
     text_color = tuple(region.get("text_color", [65, 65, 65]))
+
+    blur_radius = int(region.get("blur_radius", 0))
+    if blur_radius > 0:
+        crop = image.crop((x, y, x + w, y + h))
+        crop = crop.filter(ImageFilter.GaussianBlur(radius=blur_radius))
+        image.paste(crop, (x, y))
+        if not text:
+            return
 
     fill_color = tuple(region.get("fill_color", sample_fill_color(image, x, y, w, h)))
     draw.rectangle([x, y, x + w, y + h], fill=fill_color)

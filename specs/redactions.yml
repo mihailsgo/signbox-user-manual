@@ -10,33 +10,23 @@ images:
 
   - input: assets/03-home-after-upload__doctype-open.png
     output: assets/03-home-after-upload__doctype-open.png
-    regions:
-      - rect: [86, 286, 500, 150]
-        text: ""
+    regions: []
 
   - input: assets/03-home-after-upload__template-open.png
     output: assets/03-home-after-upload__template-open.png
-    regions:
-      - rect: [86, 286, 500, 150]
-        text: ""
+    regions: []
 
   - input: assets/04-recipient-fields.png
     output: assets/04-recipient-fields.png
-    regions:
-      - rect: [86, 286, 500, 150]
-        text: ""
+    regions: []
 
   - input: assets/04-recipient-fields__country-open.png
     output: assets/04-recipient-fields__country-open.png
-    regions:
-      - rect: [86, 286, 500, 150]
-        text: ""
+    regions: []
 
   - input: assets/04-recipient-fields__select-contact-open.png
     output: assets/04-recipient-fields__select-contact-open.png
     regions:
-      - rect: [86, 286, 500, 150]
-        text: ""
       - rect: [317, 317, 715, 390]
         text: Sample contacts list (redacted)
       - rect: [300, 700, 760, 95]
