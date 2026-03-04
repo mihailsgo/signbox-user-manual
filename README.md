@@ -1,5 +1,9 @@
 <p align="center">
-  <img src="https://trustlynx.com/uploads/LOGO_original_2abd1f06fa.png" width="260" alt="TrustLynx">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/brand/trustlynx-logo-dark.png">
+    <source media="(prefers-color-scheme: light)" srcset="assets/brand/trustlynx-logo-light.png">
+    <img src="assets/brand/trustlynx-logo-light.png" width="400" alt="TrustLynx">
+  </picture>
 </p>
 
 <p align="center">
