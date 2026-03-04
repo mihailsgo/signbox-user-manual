@@ -36,8 +36,6 @@ SignBox is a web-based platform for preparing, sending, signing, and tracking el
 9. [FAQ](#faq)
 10. [User And Access Management](#user-and-access-management)
 11. [Glossary](#glossary)
-12. [New User Simulation (Nina) + Coverage Check](#new-user-simulation-nina--coverage-check)
-13. [Coverage Report](#coverage-report)
 
 ## Terminology
 Use these terms consistently:
@@ -529,6 +527,141 @@ Provide:
 15. Can recipient comments be seen by initiator?
 16. Decline/recipient comment visibility appears in process details where captured.
 
+### Anonymous Checkbox (Most Important)
+1. What does `Anonymous` mean in practice?
+2. It means the recipient is created without personal code/phone identifier in process payload.
+3. In current frontend mapping, anonymous recipients are sent with `signerPersonalCode = ''`.
+4. In process service, signer is marked anonymous when `signerPersonalCode` is null/empty.
+
+5. How does the backend identify an anonymous recipient?
+6. For non-anonymous recipient access, matching is done by `personalCode + country`.
+7. For anonymous recipient access, matching falls back to recipient `signerId` when personal code is empty.
+8. Practical meaning: anonymous flow depends on recipient-specific link/session identity rather than national personal code matching.
+
+9. When should I use anonymous?
+10. Use when personal code collection is not required by your process policy.
+11. Typical examples: acknowledgement/view-only style flows or cases where identity is verified outside SignBox.
+
+12. When should I NOT use anonymous?
+13. Do not use for legally identity-bound signing where signer must be tied to a national identifier in SignBox.
+14. If unsure, default to non-anonymous and ask process owner/compliance.
+
+15. Why do fields appear/disappear when I toggle anonymous?
+16. When anonymous is enabled, personal identifier field is not required.
+17. When anonymous is disabled, country + personal value are expected for recipient identity matching.
+
+18. Security warning for anonymous flows:
+19. Treat invitation links as sensitive.
+20. Do not forward recipient links across users.
+21. For stronger user-bound traceability, prefer non-anonymous setup.
+
+### New User Simulation (Nina) + Coverage Check
+Persona:
+
+1. Name: Nina
+2. Background: Office/HR/admin, non-technical
+3. Goal: log in and prepare a process up to just before clicking `Start signing process`
+
+Transcript and checks:
+
+1. Nina: "Which portal do I open to create a process?"
+2. Answer: Open internal portal (`signbox.<tenant>`). External portal is for recipients.
+3. Coverage check: Covered YES - Section [Overview](#overview)
+
+4. Nina: "I logged in and don't see old records. Did I break something?"
+5. Answer: Go to `History` and set status filter to `Completed`.
+6. Coverage check: Covered YES - Section [Tracking And Managing Processes (History)](#tracking-and-managing-processes-history)
+
+7. Nina: "What is a process vs container?"
+8. Answer: Process is workflow; container is signed output package/name.
+9. Coverage check: Covered YES - Section [Terminology](#terminology)
+
+10. Nina: "What do I click first to start?"
+11. Answer: On Home, upload file first.
+12. Coverage check: Covered YES - Section [Quick Start For Initiators (3-5 Minutes)](#quick-start-for-initiators-3-5-minutes)
+
+13. Nina: "Why did container name appear automatically?"
+14. Answer: It is auto-generated from file name and can be edited.
+15. Coverage check: Covered YES - Section [Initiating A Signing Process (Deep Dive)](#initiating-a-signing-process-deep-dive)
+
+16. Nina: "What is document type and why is it mandatory?"
+17. Answer: It maps process to configured profile/metadata rules and is required.
+18. Coverage check: Covered YES - Section [Initiating A Signing Process (Deep Dive)](#initiating-a-signing-process-deep-dive)
+
+19. Nina: "Can I skip my email field?"
+20. Answer: No, initiator email is required and used in metadata/notifications.
+21. Coverage check: Covered YES - Section [Initiating A Signing Process (Deep Dive)](#initiating-a-signing-process-deep-dive)
+
+22. Nina: "What is recipient group?"
+23. Answer: A group is one step. Multiple recipients in same group act in parallel; groups are sequential.
+24. Coverage check: Covered YES - Section [Initiating A Signing Process (Deep Dive)](#initiating-a-signing-process-deep-dive)
+
+25. Nina: "I added recipient but role list is small. Bug?"
+26. Answer: Possibly configuration-restricted roles.
+27. Coverage check: Covered YES - Section [Initiating A Signing Process (Deep Dive)](#initiating-a-signing-process-deep-dive)
+
+28. Nina: "Why do I need country?"
+29. Answer: Country affects recipient validation and available signing methods.
+30. Coverage check: Covered YES - Section [Initiating A Signing Process (Deep Dive)](#initiating-a-signing-process-deep-dive)
+
+31. Nina: "What does anonymous mean exactly?"
+32. Answer: Anonymous means no personal code is stored for recipient matching in the main personal-code path; backend marks signer anonymous from empty personal code and uses signerId-based fallback for access matching.
+33. Coverage check: Covered YES - Section [FAQ](#faq)
+
+34. Nina: "Can an anonymous recipient still sign?"
+35. Answer: Yes, if the recipient has valid recipient link/session context; identity matching path differs from non-anonymous personal code matching.
+36. Coverage check: Covered YES - Section [FAQ](#faq)
+
+37. Nina: "When should I avoid anonymous?"
+38. Answer: Avoid when legal/policy requires personal-code-bound signer identity in SignBox.
+39. Coverage check: Covered YES - Section [FAQ](#faq)
+
+40. Nina: "Can I add recipients from saved list?"
+41. Answer: Yes, use `Select contact` from recipient group header.
+42. Coverage check: Covered YES - Section [Contacts And Templates](#contacts-and-templates)
+
+43. Nina: "Can I save this setup for next time?"
+44. Answer: Yes, use template save/select flow.
+45. Coverage check: Covered YES - Section [Contacts And Templates](#contacts-and-templates)
+
+46. Nina: "What is Sign first?"
+47. Answer: It flags initiator-first signing behavior; exact flow can be policy-dependent.
+48. Coverage check: Covered YES - Section [Initiating A Signing Process (Deep Dive)](#initiating-a-signing-process-deep-dive)
+
+49. Nina: "Where do I set deadline?"
+50. Answer: In each recipient group header (`Add due date`).
+51. Coverage check: Covered YES - Section [Initiating A Signing Process (Deep Dive)](#initiating-a-signing-process-deep-dive)
+
+52. Nina: "Can I send different comments to one recipient vs everyone?"
+53. Answer: Yes, process-level comment and recipient-level comment are separate.
+54. Coverage check: Covered YES - Section [Initiating A Signing Process (Deep Dive)](#initiating-a-signing-process-deep-dive)
+
+55. Nina: "If recipient declines, how do I know?"
+56. Answer: Status/comment is visible in process details and history status indicators.
+57. Coverage check: Covered YES - Section [Recipient Guide: How To Sign A Received Document](#recipient-guide-how-to-sign-a-received-document)
+
+58. Nina: "Can I delete wrong process from history?"
+59. Answer: Standard current UI emphasizes cancel; delete may be admin/config-dependent.
+60. Coverage check: Covered YES - Section [Tracking And Managing Processes (History)](#tracking-and-managing-processes-history)
+
+61. Nina: "I'm ready. What button starts everything?"
+62. Answer: `Start signing process`.
+63. Coverage check: Covered YES - Section [Quick Start For Initiators (3-5 Minutes)](#quick-start-for-initiators-3-5-minutes)
+
+64. Nina: "What if no one gets email?"
+65. Answer: Check recipient email, notify setting, group/step activation, spam; then escalate with process ID.
+66. Coverage check: Covered YES - Section [Troubleshooting](#troubleshooting)
+
+### Simulation Coverage Report
+1. Total questions simulated: 22
+2. Covered YES: 22
+3. Covered NO: 0
+4. Remaining weak spots:
+5. Live tenant-specific signer method screens may differ by configured providers.
+6. Exact reminder timing is backend-policy-dependent.
+7. Recommended improvement:
+8. Add one real recipient walkthrough per country/method in your production docs portal revision.
+
 ### Related sections
 1. [Initiating A Signing Process (Deep Dive)](#initiating-a-signing-process-deep-dive)
 2. [Recipient Guide: How To Sign A Received Document](#recipient-guide-how-to-sign-a-received-document)
@@ -569,104 +702,4 @@ Where to get help:
 8. Sign first: Initiator-first signing option.
 9. Signer language: Preferred language for recipient communication/UI context where used.
 10. Step status: Status of recipient group within a process.
-
-## New User Simulation (Nina) + Coverage Check
-Persona:
-
-1. Name: Nina
-2. Background: Office/HR/admin, non-technical
-3. Goal: log in and prepare a process up to just before clicking `Start signing process`
-
-Transcript and checks:
-
-1. Nina: “Which portal do I open to create a process?”
-2. Answer: Open internal portal (`signbox.<tenant>`). External portal is for recipients.
-3. Coverage check: Covered YES - Section [Overview](#overview)
-
-4. Nina: “I logged in and don’t see old records. Did I break something?”
-5. Answer: Go to `History` and set status filter to `Completed`.
-6. Coverage check: Covered YES - Section [Tracking And Managing Processes (History)](#tracking-and-managing-processes-history)
-
-7. Nina: “What is a process vs container?”
-8. Answer: Process is workflow; container is signed output package/name.
-9. Coverage check: Covered YES - Section [Terminology](#terminology)
-
-10. Nina: “What do I click first to start?”
-11. Answer: On Home, upload file first.
-12. Coverage check: Covered YES - Section [Quick Start For Initiators (3-5 Minutes)](#quick-start-for-initiators-3-5-minutes)
-
-13. Nina: “Why did container name appear automatically?”
-14. Answer: It is auto-generated from file name and can be edited.
-15. Coverage check: Covered YES - Section [Initiating A Signing Process (Deep Dive)](#initiating-a-signing-process-deep-dive)
-
-16. Nina: “What is document type and why is it mandatory?”
-17. Answer: It maps process to configured profile/metadata rules and is required.
-18. Coverage check: Covered YES - Section [Initiating A Signing Process (Deep Dive)](#initiating-a-signing-process-deep-dive)
-
-19. Nina: “Can I skip my email field?”
-20. Answer: No, initiator email is required and used in metadata/notifications.
-21. Coverage check: Covered YES - Section [Initiating A Signing Process (Deep Dive)](#initiating-a-signing-process-deep-dive)
-
-22. Nina: “What is recipient group?”
-23. Answer: A group is one step. Multiple recipients in same group act in parallel; groups are sequential.
-24. Coverage check: Covered YES - Section [Initiating A Signing Process (Deep Dive)](#initiating-a-signing-process-deep-dive)
-
-25. Nina: “I added recipient but role list is small. Bug?”
-26. Answer: Possibly configuration-restricted roles.
-27. Coverage check: Covered YES - Section [Initiating A Signing Process (Deep Dive)](#initiating-a-signing-process-deep-dive)
-
-28. Nina: “Why do I need country?”
-29. Answer: Country affects recipient validation and available signing methods.
-30. Coverage check: Covered YES - Section [Initiating A Signing Process (Deep Dive)](#initiating-a-signing-process-deep-dive)
-
-31. Nina: “What does anonymous mean exactly?”
-32. Answer: Anonymous disables personal identifier requirement in recipient setup.
-33. Coverage check: Covered YES - Section [Initiating A Signing Process (Deep Dive)](#initiating-a-signing-process-deep-dive)
-
-34. Nina: “Can I add recipients from saved list?”
-35. Answer: Yes, use `Select contact` from recipient group header.
-36. Coverage check: Covered YES - Section [Contacts And Templates](#contacts-and-templates)
-
-37. Nina: “Can I save this setup for next time?”
-38. Answer: Yes, use template save/select flow.
-39. Coverage check: Covered YES - Section [Contacts And Templates](#contacts-and-templates)
-
-40. Nina: “What is Sign first?”
-41. Answer: It flags initiator-first signing behavior; exact flow can be policy-dependent.
-42. Coverage check: Covered YES - Section [Initiating A Signing Process (Deep Dive)](#initiating-a-signing-process-deep-dive)
-
-43. Nina: “Where do I set deadline?”
-44. Answer: In each recipient group header (`Add due date`).
-45. Coverage check: Covered YES - Section [Initiating A Signing Process (Deep Dive)](#initiating-a-signing-process-deep-dive)
-
-46. Nina: “Can I send different comments to one recipient vs everyone?”
-47. Answer: Yes, process-level comment and recipient-level comment are separate.
-48. Coverage check: Covered YES - Section [Initiating A Signing Process (Deep Dive)](#initiating-a-signing-process-deep-dive)
-
-49. Nina: “If recipient declines, how do I know?”
-50. Answer: Status/comment is visible in process details and history status indicators.
-51. Coverage check: Covered YES - Section [Recipient Guide: How To Sign A Received Document](#recipient-guide-how-to-sign-a-received-document)
-
-52. Nina: “Can I delete wrong process from history?”
-53. Answer: Standard current UI emphasizes cancel; delete may be admin/config-dependent.
-54. Coverage check: Covered YES - Section [Tracking And Managing Processes (History)](#tracking-and-managing-processes-history)
-
-55. Nina: “I’m ready. What button starts everything?”
-56. Answer: `Start signing process`.
-57. Coverage check: Covered YES - Section [Quick Start For Initiators (3-5 Minutes)](#quick-start-for-initiators-3-5-minutes)
-
-58. Nina: “What if no one gets email?”
-59. Answer: Check recipient email, notify setting, group/step activation, spam; then escalate with process ID.
-60. Coverage check: Covered YES - Section [Troubleshooting](#troubleshooting)
-
-## Coverage Report
-1. Total questions simulated: 20
-2. Covered YES: 20
-3. Covered NO: 0
-4. Remaining weak spots:
-5. Live tenant-specific signer method screens may differ by configured providers.
-6. Exact reminder timing is backend-policy-dependent.
-7. Recommended improvement:
-8. Add tenant screenshots and one real recipient walkthrough per country/method in your production docs portal revision.
-
 
