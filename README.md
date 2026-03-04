@@ -2,6 +2,10 @@
   <img src="https://trustlynx.com/uploads/LOGO_original_2abd1f06fa.png" width="260" alt="TrustLynx">
 </p>
 
+<p align="center">
+  <img src="assets/trustlynx-signbox-workflow.svg" width="1000" alt="TrustLynx SignBox workflow">
+</p>
+
 # SignBox User Manual (TrustLynx)
 
 SignBox helps employees create document signing processes and helps recipients sign documents securely online.
@@ -13,22 +17,6 @@ SignBox helps employees create document signing processes and helps recipients s
 
 > [!NOTE]
 > This repository contains user-focused documentation for the current TrustLynx SignBox UI.
-
-## Quick links
-- [Overview](docs/overview.md)
-- [Terminology](docs/terminology.md)
-- [Initiator Quick Start](docs/initiator-quickstart.md)
-- [Initiator Deep Dive](docs/initiator-deep-dive.md)
-- [Contacts and Templates](docs/contacts-and-templates.md)
-- [Recipient Guide](docs/recipient-guide.md)
-- [History and Process Management](docs/history.md)
-- [Troubleshooting](docs/troubleshooting.md)
-- [FAQ](docs/faq.md)
-- [User and Access Management](docs/access-management.md)
-- [Glossary](docs/glossary.md)
-- [New User Simulation](docs/new-user-simulation.md)
-- [Coverage Report](docs/coverage-report.md)
-- [Screenshot Style Guide](docs/style-guide.md)
 
 ## Personas
 - **I am a new initiator**: start with [Initiator Quick Start](docs/initiator-quickstart.md), then [Initiator Deep Dive](docs/initiator-deep-dive.md)

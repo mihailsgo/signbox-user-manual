@@ -14,48 +14,20 @@ fs.mkdirSync(outDir, { recursive: true });
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-async function firstVisible(page, selectors) {
-  for (const selector of selectors) {
-    const loc = selector.startsWith("text=")
-      ? page.getByText(selector.slice(5), { exact: false }).first()
-      : page.locator(selector).first();
-    if ((await loc.count()) > 0) {
-      try {
-        await loc.waitFor({ state: "visible", timeout: 2000 });
-        return loc;
-      } catch {
-        // continue
-      }
-    }
-  }
-  return null;
-}
-
-async function clickAny(page, selectors) {
-  const loc = await firstVisible(page, selectors);
-  if (!loc) return false;
-  try {
-    await loc.click({ timeout: 5000 });
-    return true;
-  } catch {
-    return false;
-  }
-}
-
-async function fillAny(page, selectors, value) {
-  const loc = await firstVisible(page, selectors);
-  if (!loc) return false;
-  try {
-    await loc.fill(value, { timeout: 5000 });
-    return true;
-  } catch {
-    return false;
-  }
-}
-
-async function save(page, name) {
-  await page.screenshot({ path: `${outDir}/${name}`, fullPage: true });
+async function save(page, name, fullPage = true) {
+  await page.screenshot({ path: `${outDir}/${name}`, fullPage });
   console.log(`Saved ${name}`);
+}
+
+async function clickIfVisible(page, selector) {
+  const loc = page.locator(selector).first();
+  if ((await loc.count()) === 0) return false;
+  try {
+    await loc.click({ timeout: 4000 });
+    return true;
+  } catch {
+    return false;
+  }
 }
 
 const browser = await chromium.launch({ headless: true });
@@ -67,75 +39,90 @@ try {
     waitUntil: "domcontentloaded",
     timeout: 120000,
   });
-  await sleep(1500);
+  await sleep(1200);
 
-  await fillAny(page, ['input[name="username"]', '#username', 'input[type="email"]'], USER);
-  await fillAny(page, ['input[name="password"]', '#password', 'input[type="password"]'], PASS);
-  await clickAny(page, ['button[type="submit"]', "#kc-login", 'input[type="submit"]']);
+  const userInput = page.locator('input[name="username"], #username, input[type="email"]').first();
+  if ((await userInput.count()) === 0) {
+    await clickIfVisible(page, 'button:has-text("Login")');
+    await sleep(1200);
+  }
+  await userInput.waitFor({ state: "visible", timeout: 30000 });
+  await save(page, "01-login-page.png", false);
 
+  await page.fill('input[name="username"], #username, input[type="email"]', USER);
+  await page.fill('input[name="password"], #password, input[type="password"]', PASS);
+  await page.click('button[type="submit"], #kc-login, input[type="submit"]');
   await page.waitForLoadState("networkidle", { timeout: 120000 });
-  await sleep(2000);
+  await sleep(1300);
+
   await save(page, "02-home-create-process.png");
 
-  const candidateFiles = [
+  const candidates = [
     "C:/Repos/trustlynx-infra-tools/fresh_valid_test.pdf",
     "C:/Repos/trustlynx-infra-tools/dl_219c5270-9788-440e-a78a-2fa617d5564e.pdf",
   ].filter((f) => fs.existsSync(f));
 
-  if (candidateFiles.length > 0) {
-    const input = page.locator('input[type="file"]').first();
-    if ((await input.count()) > 0) {
-      await input.setInputFiles(candidateFiles[0]);
-      await sleep(2000);
-      await save(page, "03-home-after-upload.png");
+  if (candidates.length > 0) {
+    const fileInput = page.locator('input[type="file"]').first();
+    if ((await fileInput.count()) > 0) {
+      await fileInput.setInputFiles(candidates[0]);
+      await sleep(1800);
     }
   }
 
-  await clickAny(page, ['[name="documentType"]', '[id*="documentType"]', "text=Document type"]);
-  await sleep(600);
-  await save(page, "03-home-after-upload__doctype-open.png");
+  await page.click("#documentType");
+  await sleep(250);
+  await save(page, "03-home-after-upload__doctype-open.png", false);
   await page.keyboard.press("Escape");
   await sleep(200);
 
-  await clickAny(page, ['button:has-text("Add signer")', "text=Add signer"]);
-  await sleep(900);
+  await page.click('button:has-text("Select template")');
+  await sleep(550);
+  await save(page, "03-home-after-upload__template-open.png", false);
+  await page.keyboard.press("Escape");
+  await sleep(200);
+
+  await page.click('button:has-text("Add signer")');
+  await sleep(600);
   await save(page, "04-recipient-fields.png");
 
-  await clickAny(page, ['select[name*="country"]', '[name*="country"]', "text=Country"]);
-  await sleep(500);
-  await save(page, "04-recipient-fields__country-open.png");
+  await page.locator('[id="groups.0.signers.0.country"]').click();
+  await sleep(250);
+  await save(page, "04-recipient-fields__country-open.png", false);
   await page.keyboard.press("Escape");
   await sleep(200);
 
-  await clickAny(page, ['button:has-text("Select contact")', "text=Select contact"]);
-  await sleep(900);
-  await save(page, "04-recipient-fields__select-contact-open.png");
+  await page.click('button:has-text("Select contact")');
+  await sleep(700);
+  await save(page, "04-recipient-fields__select-contact-open.png", false);
   await page.keyboard.press("Escape");
   await sleep(200);
 
-  await clickAny(page, ['button:has-text("Select template")', "text=Select template"]);
-  await sleep(900);
-  await save(page, "03-home-after-upload__template-open.png");
-  await page.keyboard.press("Escape");
-  await sleep(200);
-
-  await clickAny(page, ['a:has-text("History")', "text=History"]);
+  await page.click("text=History");
   await page.waitForLoadState("networkidle", { timeout: 120000 });
-  await sleep(1200);
+  await sleep(800);
   await save(page, "05-history-filters.png");
 
-  await clickAny(page, ['[name="status"]', "text=Status"]);
-  await sleep(500);
-  await save(page, "05-history-filters__status-open.png");
+  await page.click("#status");
+  await sleep(300);
+  await save(page, "05-history-filters__status-open.png", false);
   await page.keyboard.press("Escape");
   await sleep(200);
+
+  const firstRow = page.locator("table tbody tr").first();
+  if ((await firstRow.count()) > 0) {
+    await firstRow.click();
+    await page.waitForLoadState("networkidle", { timeout: 120000 });
+    await sleep(900);
+    await save(page, "13-process-detail.png");
+  }
 
   await page.goto("https://esign.trustlynx.com", {
     waitUntil: "domcontentloaded",
     timeout: 120000,
   });
-  await sleep(1500);
-  await save(page, "08-external-portal.png");
+  await sleep(1200);
+  await save(page, "08-external-portal.png", false);
 
   console.log("Raw screenshot capture complete.");
 } finally {

@@ -1,0 +1,171 @@
+<svg viewBox="0 0 1200 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">TrustLynx SignBox Workflow</title>
+  <desc id="desc">An animated flowchart showing the process from document initiation to the final audit trail.</desc>
+
+  <style>
+    :root {
+      --primary: #16A34A;
+      --primary-light: #DCFCE7;
+      --text-main: #0F172A;
+      --text-sub: #64748B;
+      --stroke: #CBD5E1;
+      --bg-card: rgba(255, 255, 255, 0.9);
+      --font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      --anim-speed: 16s;
+    }
+
+    text { font-family: var(--font-family); }
+    .title { font-size: 18px; font-weight: 700; fill: var(--text-main); }
+    .label { font-size: 14px; font-weight: 600; fill: var(--text-main); }
+    .subtext { font-size: 11px; fill: var(--text-sub); }
+    .card { fill: var(--bg-card); stroke: var(--stroke); stroke-width: 1; rx: 12; }
+    .icon-bg { fill: var(--primary-light); rx: 8; }
+    .icon-path { fill: none; stroke: var(--primary); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+    .connector { fill: none; stroke: var(--stroke); stroke-width: 2; marker-end: url(#arrowhead); }
+    .connector-dash { fill: none; stroke: var(--primary); stroke-width: 2; stroke-dasharray: 8, 8; stroke-dashoffset: 100; opacity: 0; }
+
+    @keyframes fadeInOut {
+      0%, 5% { opacity: 0; transform: translateY(5px); }
+      10%, 90% { opacity: 1; transform: translateY(0); }
+      95%, 100% { opacity: 0; }
+    }
+
+    @keyframes slideDoc {
+      0%, 5% { transform: translate(60px, 180px); opacity: 0; }
+      10%, 20% { transform: translate(210px, 180px); opacity: 1; }
+      25%, 100% { opacity: 0; }
+    }
+
+    @keyframes dropdown {
+      0%, 25% { opacity: 0; transform: translateY(-10px); }
+      30%, 45% { opacity: 1; transform: translateY(0); }
+      50%, 100% { opacity: 0; }
+    }
+
+    @keyframes flowLine {
+      45% { stroke-dashoffset: 100; opacity: 0; }
+      50%, 60% { stroke-dashoffset: 0; opacity: 1; }
+      65% { opacity: 0; }
+    }
+
+    @keyframes signAction {
+      0%, 60% { stroke-dashoffset: 50; opacity: 0; }
+      70%, 85% { stroke-dashoffset: 0; opacity: 1; }
+      90%, 100% { opacity: 0; }
+    }
+
+    @keyframes statusChange {
+      0%, 75% { fill: #E2E8F0; }
+      80%, 95% { fill: var(--primary); }
+    }
+
+    @keyframes pop {
+      0%, 80% { transform: scale(0); }
+      85% { transform: scale(1.2); }
+      90%, 95% { transform: scale(1); }
+      100% { transform: scale(0); }
+    }
+
+    .anim-card { animation: fadeInOut var(--anim-speed) infinite; }
+    .moving-doc { animation: slideDoc var(--anim-speed) infinite; }
+    .drop-menu { animation: dropdown var(--anim-speed) infinite; }
+    .dash-line { animation: flowLine var(--anim-speed) infinite; }
+    .signature-path { stroke-dasharray: 50; animation: signAction var(--anim-speed) infinite; }
+    .status-pill { animation: statusChange var(--anim-speed) infinite; }
+    .check-mark { animation: pop var(--anim-speed) infinite; transform-origin: 1090px 185px; }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; opacity: 1 !important; }
+      .moving-doc, .drop-menu { display: none; }
+      .status-pill { fill: var(--primary); }
+    }
+  </style>
+
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="var(--stroke)" />
+    </marker>
+  </defs>
+
+  <circle cx="100" cy="100" r="80" fill="var(--primary)" opacity="0.03" />
+  <circle cx="1100" cy="300" r="100" fill="var(--primary)" opacity="0.03" />
+
+  <text x="600" y="40" text-anchor="middle" class="title">TrustLynx SignBox - How it works</text>
+
+  <g class="connectors">
+    <path class="connector" d="M165 210 L225 210" />
+    <path class="connector" d="M375 210 L435 210" />
+    <path class="connector" d="M585 210 L645 210" />
+    <path class="connector-dash dash-line" d="M585 210 L645 210" />
+    <path class="connector" d="M795 210 L855 210" />
+    <path class="connector" d="M1005 210 L1065 210" />
+  </g>
+
+  <g id="node-initiator">
+    <rect x="15" y="150" width="150" height="120" class="card" />
+    <rect x="65" y="165" width="50" height="50" class="icon-bg" />
+    <circle cx="90" cy="185" r="8" class="icon-path" />
+    <path d="M75 205 c0-5 5-10 15-10 s15 5 15 10" class="icon-path" />
+    <text x="90" y="235" text-anchor="middle" class="label">Initiator</text>
+    <text x="90" y="252" text-anchor="middle" class="subtext">Starts the process</text>
+  </g>
+
+  <g class="moving-doc">
+    <rect width="24" height="30" rx="3" fill="white" stroke="var(--primary)" stroke-width="2" />
+    <line x1="6" y1="10" x2="18" y2="10" stroke="var(--primary)" stroke-width="2" />
+    <line x1="6" y1="18" x2="14" y2="18" stroke="var(--primary)" stroke-width="2" />
+  </g>
+
+  <g id="node-upload">
+    <rect x="225" y="150" width="150" height="120" class="card" />
+    <rect x="275" y="165" width="50" height="50" class="icon-bg" />
+    <path d="M290 200 v-15 m-5 5 l5-5 5 5 M285 205 h10" class="icon-path" />
+    <text x="300" y="235" text-anchor="middle" class="label">Upload</text>
+    <text x="300" y="252" text-anchor="middle" class="subtext">PDF / DOCX files</text>
+  </g>
+
+  <g id="node-config">
+    <rect x="435" y="150" width="150" height="120" class="card" />
+    <rect x="485" y="165" width="50" height="50" class="icon-bg" />
+    <circle cx="502" cy="190" r="5" class="icon-path" />
+    <circle cx="518" cy="190" r="5" class="icon-path" />
+    <text x="510" y="235" text-anchor="middle" class="label">Recipients</text>
+    <text x="510" y="252" text-anchor="middle" class="subtext">Add signers</text>
+    <g class="drop-menu">
+      <rect x="445" y="275" width="130" height="40" class="card" fill="white" />
+      <line x1="455" y1="288" x2="520" y2="288" stroke="var(--stroke)" stroke-width="4" stroke-linecap="round" />
+      <line x1="455" y1="302" x2="500" y2="302" stroke="var(--stroke)" stroke-width="4" stroke-linecap="round" />
+    </g>
+  </g>
+
+  <g id="node-send">
+    <rect x="645" y="150" width="150" height="120" class="card" />
+    <rect x="695" y="165" width="50" height="50" class="icon-bg" />
+    <path d="M705 180 h30 v20 h-30 z M705 180 l15 10 15-10" class="icon-path" />
+    <text x="720" y="235" text-anchor="middle" class="label">Invitations</text>
+    <text x="720" y="252" text-anchor="middle" class="subtext">Cloud delivery</text>
+  </g>
+
+  <g id="node-sign">
+    <rect x="855" y="150" width="150" height="120" class="card" />
+    <rect x="905" y="165" width="50" height="50" class="icon-bg" />
+    <path d="M915 200 c5-10 15-10 20 0 s10-5 15 0" class="icon-path signature-path" />
+    <text x="930" y="235" text-anchor="middle" class="label">Recipients Sign</text>
+    <text x="930" y="252" text-anchor="middle" class="subtext">E-ID / Biometric</text>
+  </g>
+
+  <g id="node-complete">
+    <rect x="1065" y="150" width="150" height="120" class="card" />
+    <rect x="1090" y="165" width="100" height="22" rx="11" class="status-pill" />
+    <text x="1140" y="180" text-anchor="middle" font-size="10" fill="white" font-weight="bold">COMPLETED</text>
+
+    <rect x="1115" y="200" width="50" height="30" class="icon-bg" />
+    <path d="M1080 185 l5 5 10-10" class="icon-path check-mark" />
+
+    <text x="1140" y="245" text-anchor="middle" class="label">Audit Trail</text>
+    <g opacity="0.4">
+      <line x1="1085" y1="258" x2="1195" y2="258" stroke="var(--text-sub)" stroke-dasharray="2,2"/>
+    </g>
+  </g>
+</svg>

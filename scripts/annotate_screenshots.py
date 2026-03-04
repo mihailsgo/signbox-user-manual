@@ -59,6 +59,7 @@ def draw_annotation(
     annotation: dict[str, Any],
     label_font: ImageFont.ImageFont,
     badge_font: ImageFont.ImageFont,
+    border_only_default: bool,
 ) -> None:
     """Draw one annotation unit: highlight + badge + label + arrow."""
     step = str(annotation.get("step", "?"))
@@ -93,6 +94,10 @@ def draw_annotation(
         fill=(255, 255, 255, 255),
         font=badge_font,
     )
+
+    border_only = bool(annotation.get("border_only", border_only_default))
+    if border_only:
+        return
 
     # Label block. Default position: above highlighted control.
     label_padding = 8
@@ -133,6 +138,7 @@ def process_image(
     image_spec: dict[str, Any],
     label_font: ImageFont.ImageFont,
     badge_font: ImageFont.ImageFont,
+    border_only_default: bool,
 ) -> None:
     input_path = repo_root / image_spec["input"]
     output_path = repo_root / image_spec["output"]
@@ -147,7 +153,7 @@ def process_image(
     draw = ImageDraw.Draw(overlay)
 
     for annotation in image_spec.get("annotations", []):
-        draw_annotation(draw, annotation, label_font, badge_font)
+        draw_annotation(draw, annotation, label_font, badge_font, border_only_default)
 
     out = Image.alpha_composite(base, overlay).convert("RGB")
     out.save(output_path)
@@ -175,9 +181,16 @@ def main() -> int:
 
     label_font = load_font(20)
     badge_font = load_font(20)
+    border_only_default = bool(spec.get("border_only_default", True))
 
     for image_spec in images:
-        process_image(repo_root, image_spec, label_font, badge_font)
+        process_image(
+            repo_root,
+            image_spec,
+            label_font,
+            badge_font,
+            border_only_default,
+        )
 
     return 0
 
