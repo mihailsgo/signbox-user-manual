@@ -59,22 +59,22 @@ This page explains each creation field in detail.
 
 ### How `Anonymous` works
 - Non-anonymous matching: `personalCode + country`.
-- Anonymous matching: fallback by `signerId` when personal code is empty.
+- Anonymous matching: personal code is not used, but recipient access still requires the correct invitation link.
 
 ### `Anonymous` flow impact (code-verified)
 - UI behavior: when `Anonymous` is enabled for a signer row, personal identity fields are hidden for that row.
 - Payload behavior: the client sends empty `signerPersonalCode` for anonymous recipients.
 - Backend behavior: signer is treated as anonymous when `signerPersonalCode` is empty.
 - External portal authorization:
-  - Non-anonymous recipient: must match both `personalCode + country` for that recipient record.
-  - Anonymous recipient: recipient matching is done by invitation `signerId` (the recipient-specific link identity), not by personal code.
+  - Non-anonymous recipient: identity check uses `personalCode + country`.
+  - Anonymous recipient: identity check does not use personal code.
 
 ### Who can and cannot open the external portal task
 - Can open:
-  - Recipient with valid invitation link containing correct `signerId`.
+  - Recipient with a valid invitation link sent for that recipient.
   - For non-anonymous recipient, identity must also match `personalCode + country`.
 - Cannot open:
-  - User with wrong `signerId` (or no invitation link).
+  - User without the correct invitation link.
   - Non-anonymous recipient with mismatching `personalCode` or `country`.
   - Any recipient when process/step status no longer allows signing (for example canceled/expired flow conditions).
 

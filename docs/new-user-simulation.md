@@ -36,5 +36,3 @@ Persona:
     **A**: Process may be completed/canceled/read-only.
 15. **Q**: How do I escalate issue?
     **A**: Send process ID, timestamp, role, and screenshot.
-
-See coverage mapping in [coverage-report.md](coverage-report.md).

@@ -40,13 +40,3 @@ SignBox helps employees create document signing processes and helps recipients s
 10. [User and Access Management](docs/access-management.md)
 11. [Glossary](docs/glossary.md)
 12. [New User Simulation](docs/new-user-simulation.md)
-13. [Coverage Report](docs/coverage-report.md)
-14. [Screenshot Style Guide](docs/style-guide.md)
-
-## Screenshot generation
-To regenerate sanitized + annotated screenshots:
-
-```bash
-python scripts/sanitize_screenshots.py specs/redactions.yml
-python scripts/annotate_screenshots.py specs/annotations.yml
-```

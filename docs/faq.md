@@ -26,22 +26,22 @@ Management is role-gated. If your role does not include admin permissions, the m
 
 ### How it works internally
 - Non-anonymous: `personalCode + country`.
-- Anonymous: fallback by `signerId` when personal code is empty.
+- Anonymous: personal code matching is skipped, but access still requires the correct invitation link.
 
 ### How it affects external portal login
 - `Anonymous` does not mean public access.
-- The recipient still needs a valid recipient invitation context (`signerId` from invitation flow).
+- The recipient still needs the correct invitation link.
 - Non-anonymous recipient:
   - Must match recipient `personalCode + country`.
 - Anonymous recipient:
   - Personal code is not used for recipient matching.
-  - Recipient task is resolved by `signerId`.
+  - Access is still limited to the recipient who has the right invitation link.
 
 ### Who can sign and who cannot
 - Can sign:
-  - Recipient with correct invitation (`signerId`) and active step.
+  - Recipient with the correct invitation link and active step.
 - Cannot sign:
-  - User with wrong/unknown `signerId`.
+  - User without the correct invitation link.
   - Non-anonymous recipient with mismatched personal code or country.
   - Recipient when due date/status rules block signing.
 
@@ -62,7 +62,7 @@ Typical user flow is to `Cancel` an active process. Full delete/archive behavior
 4. **Q**: What is recipient group?  
    **A**: One workflow step containing one or more recipients.
 5. **Q**: What does `Anonymous` change?  
-   **A**: Personal-code matching is skipped; fallback is `signerId`.
+   **A**: Personal-code matching is skipped, but the task is still limited to the correct invitation link.
 6. **Q**: When should I avoid `Anonymous`?  
    **A**: When legal traceability requires personal code.
 7. **Q**: Where do I set due date?  
@@ -78,11 +78,8 @@ Typical user flow is to `Cancel` an active process. Full delete/archive behavior
 12. **Q**: What support data should I send?  
     **A**: Process ID, timestamp, role, and screenshot.
 13. **Q**: Does `Anonymous` mean anyone with email can sign?  
-    **A**: No. Recipient task is still bound to the recipient invitation (`signerId`).
+    **A**: No. Only a person with the correct invitation link can open the signing task.
 14. **Q**: In anonymous mode, does entered personal code matter?  
-    **A**: No. Anonymous recipient is matched by `signerId`, not personal code.
+    **A**: No. Personal code matching is skipped in anonymous mode.
 15. **Q**: Why can one colleague see a Group contact/template and another cannot?  
     **A**: Group scope visibility depends on membership in that exact group.
-
-Detailed run: [new-user-simulation.md](new-user-simulation.md)  
-Coverage map: [coverage-report.md](coverage-report.md)
