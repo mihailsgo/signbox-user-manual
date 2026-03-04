@@ -1,4 +1,4 @@
-# User and Access Management
+# User and Access Management 🔐
 
 ## What users should ask admins for
 - Account enablement/reset

@@ -1,4 +1,4 @@
-# Terminology
+# Terminology 📘
 
 Use these terms consistently in SignBox.
 

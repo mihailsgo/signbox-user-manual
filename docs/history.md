@@ -1,46 +1,50 @@
-# History and Process Management
+# History and Process Management 🕘
 
 Use `History` to find, review, and manage processes.
 
-## Step 1 - Open History and set status filter
-- **Action**: Open `History` and select status.
-- **Expected result**: Filter updates process list.
-- **If not**: Refresh page and reapply status filter.
+## Step 1 - Open status filter
+- **Action**: Open `Status` filter in `History`.
+- **Expected result**: Dropdown opens with status options.
+- **If not**: Refresh page and retry.
 - **Screenshot**:
 
-![History status filter](../assets/annotated/step-05-history-filters.png)
+<p align="center">
+  <img src="../assets/annotated/step-09-history-status-open.png" width="900" alt="History status dropdown open">
+  <br><em>Figure 1 — Status filter opened in History.</em>
+</p>
 
-## Step 2 - Use `Completed` for historical records
-- **Action**: Set status to `Completed`.
-- **Expected result**: Completed processes are listed.
-- **If not**: Expand date range and clear text filters.
-- **Screenshot**:
-
-![History completed list](../assets/annotated/step-05-history-filters.png)
-
-## Step 3 - Open process detail
+## Step 2 - Open process row
 - **Action**: Click a process row.
-- **Expected result**: Detail page opens with actions and signer details.
-- **If not**: Verify your access scope.
+- **Expected result**: Process details page opens.
+- **If not**: Verify you have access to this process.
 - **Screenshot**:
 
-![Open process row](../assets/annotated/step-10-history-open-row.png)
+<p align="center">
+  <img src="../assets/annotated/step-10-history-open-row.png" width="900" alt="History process row highlighted">
+  <br><em>Figure 2 — Process row selection in History.</em>
+</p>
 
-## Step 4 - Update active process
+## Step 3 - Update active process
 - **Action**: Edit allowed fields and click `Update`.
-- **Expected result**: Process updates successfully.
-- **If not**: Check whether process is already completed/canceled.
+- **Expected result**: Changes are saved.
+- **If not**: Check if process status is still editable.
 - **Screenshot**:
 
-![Process update action](../assets/annotated/step-11-process-update.png)
+<p align="center">
+  <img src="../assets/annotated/step-11-process-update.png" width="900" alt="Update button highlighted">
+  <br><em>Figure 3 — Update action in process details.</em>
+</p>
 
-## Step 5 - Cancel active process
-- **Action**: Click `Cancel` and confirm notify option.
-- **Expected result**: Process status changes to canceled.
-- **If not**: Ensure process is still active and not read-only.
+## Step 4 - Cancel active process
+- **Action**: Click `Cancel`.
+- **Expected result**: Process changes to canceled state.
+- **If not**: Confirm process is not completed/read-only.
 - **Screenshot**:
 
-![Process cancel action](../assets/annotated/step-12-process-cancel.png)
+<p align="center">
+  <img src="../assets/annotated/step-12-process-cancel.png" width="900" alt="Cancel button highlighted">
+  <br><em>Figure 4 — Cancel action in process details.</em>
+</p>
 
 > [!NOTE]
-> Some delete/archive operations are configuration-dependent and may not be visible in the current user UI.
+> Some delete/archive actions are configuration-dependent.

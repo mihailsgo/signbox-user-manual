@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://trustlynx.com/uploads/LOGO_original_2abd1f06fa.png" width="260" alt="TrustLynx">
+</p>
+
 # SignBox User Manual (TrustLynx)
 
 SignBox helps employees create document signing processes and helps recipients sign documents securely online.
@@ -24,6 +28,7 @@ SignBox helps employees create document signing processes and helps recipients s
 - [Glossary](docs/glossary.md)
 - [New User Simulation](docs/new-user-simulation.md)
 - [Coverage Report](docs/coverage-report.md)
+- [Screenshot Style Guide](docs/style-guide.md)
 
 ## Personas
 - **I am a new initiator**: start with [Initiator Quick Start](docs/initiator-quickstart.md), then [Initiator Deep Dive](docs/initiator-deep-dive.md)
@@ -44,10 +49,12 @@ SignBox helps employees create document signing processes and helps recipients s
 11. [Glossary](docs/glossary.md)
 12. [New User Simulation](docs/new-user-simulation.md)
 13. [Coverage Report](docs/coverage-report.md)
+14. [Screenshot Style Guide](docs/style-guide.md)
 
 ## Screenshot generation
-To regenerate annotated screenshots:
+To regenerate sanitized + annotated screenshots:
 
 ```bash
+python scripts/sanitize_screenshots.py specs/redactions.yml
 python scripts/annotate_screenshots.py specs/annotations.yml
 ```

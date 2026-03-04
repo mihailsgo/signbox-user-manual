@@ -1,126 +1,137 @@
-# Screenshot annotation spec for scripts/annotate_screenshots.py
-# Coordinates are in pixels: x, y, width, height.
-# If UI layout changes, adjust the coordinates below.
+# Screenshot annotation specification for scripts/annotate_screenshots.py
+# Coordinates are pixels: [x, y, width, height]
+# Keep highlights tight around one control or one open options list.
 
 images:
   - input: assets/01-login-page.png
     output: assets/annotated/step-01-login.png
     annotations:
       - step: 1
-        label: "Enter username"
-        rect: [790, 330, 330, 46]
-      - step: 2
-        label: "Enter password"
-        rect: [790, 395, 330, 46]
-      - step: 3
-        label: "Click Sign in"
-        rect: [790, 470, 330, 46]
+        label: Enter username
+        rect: [790, 331, 330, 44]
 
   - input: assets/02-home-create-process.png
     output: assets/annotated/step-02-upload.png
     annotations:
-      - step: 1
-        label: "Upload file here"
-        rect: [460, 190, 800, 140]
-
-  - input: assets/03-home-after-upload.png
-    output: assets/annotated/step-03-container-type.png
-    annotations:
-      - step: 1
-        label: "Container name"
-        rect: [460, 365, 430, 52]
       - step: 2
-        label: "Document type"
-        rect: [905, 365, 430, 52]
+        label: Upload document
+        rect: [458, 187, 803, 142]
+
+  - input: assets/03-home-after-upload__doctype-open.png
+    output: assets/annotated/step-03-doctype-open.png
+    annotations:
+      - step: 3
+        label: Document type dropdown (open)
+        rect: [97, 462, 570, 229]
 
   - input: assets/04-recipient-fields.png
     output: assets/annotated/step-04-recipient-fields.png
     annotations:
-      - step: 1
-        label: "Recipient full name"
-        rect: [460, 565, 300, 52]
-      - step: 2
-        label: "Recipient email"
-        rect: [965, 565, 300, 52]
-      - step: 3
-        label: "Role"
-        rect: [1285, 565, 170, 52]
       - step: 4
-        label: "Anonymous checkbox"
-        rect: [1460, 570, 210, 28]
+        label: Fill recipient name and email
+        rect: [60, 419, 503, 68]
 
-  - input: assets/05-history-filters.png
-    output: assets/annotated/step-05-history-filters.png
+  - input: assets/04-recipient-fields.png
+    output: assets/annotated/step-05-anonymous-checkbox.png
     annotations:
-      - step: 1
-        label: "Status filter"
-        rect: [900, 220, 360, 50]
-      - step: 2
-        label: "Date period"
-        rect: [460, 295, 800, 50]
+      - step: 5
+        label: Set Anonymous option
+        rect: [686, 415, 168, 62]
 
-  - input: assets/08-external-portal.png
-    output: assets/annotated/step-06-recipient-portal.png
-    annotations:
-      - step: 1
-        label: "Select country"
-        rect: [358, 215, 90, 62]
-      - step: 2
-        label: "Choose signing method"
-        rect: [360, 295, 630, 116]
-
-  # If due-date field moves, adjust this rectangle to the group header input.
   - input: assets/08-group-due-date.png
-    output: assets/annotated/step-07-due-date.png
+    output: assets/annotated/step-06-due-date.png
     annotations:
-      - step: 1
-        label: "Set group due date"
+      - step: 6
+        label: Set due date for group
         rect: [151, 367, 112, 43]
 
-  # If sign-first control moves, adjust to the checkbox at the lower left area.
   - input: assets/09-sign-first.png
-    output: assets/annotated/step-08-sign-first.png
+    output: assets/annotated/step-07-sign-first.png
     annotations:
-      - step: 1
-        label: "Enable Sign first"
+      - step: 7
+        label: Enable Sign first
         rect: [61, 681, 72, 30]
 
-  # If action buttons move, adjust to the primary start button in the bottom-right.
   - input: assets/10-start-process-button.png
-    output: assets/annotated/step-09-start-process.png
+    output: assets/annotated/step-08-start-process.png
     annotations:
-      - step: 1
-        label: "Start signing process"
-        rect: [718, 709, 205, 50]
+      - step: 8
+        label: Start signing process
+        rect: [717, 709, 205, 50]
 
-  # Use this to show selecting a process row in History.
-  - input: assets/12-history-completed-list.png
+  - input: assets/05-history-filters__status-open.png
+    output: assets/annotated/step-09-history-status-open.png
+    annotations:
+      - step: 9
+        label: Status filter dropdown (open)
+        rect: [96, 299, 573, 211]
+
+  - input: assets/05-history-filters.png
     output: assets/annotated/step-10-history-open-row.png
     annotations:
-      - step: 1
-        label: "Open process row"
-        rect: [91, 418, 1110, 42]
+      - step: 10
+        label: Open process row
+        rect: [93, 512, 1110, 42]
 
-  # Update action in process details page.
   - input: assets/13-process-update.png
     output: assets/annotated/step-11-process-update.png
     annotations:
-      - step: 1
-        label: "Save updates"
-        rect: [1148, 680, 76, 34]
+      - step: 11
+        label: Update process
+        rect: [1147, 680, 77, 34]
 
-  # Cancel action in process details page.
   - input: assets/14-process-cancel.png
     output: assets/annotated/step-12-process-cancel.png
     annotations:
-      - step: 1
-        label: "Cancel process"
-        rect: [1068, 680, 73, 34]
+      - step: 12
+        label: Cancel process
+        rect: [1068, 680, 74, 34]
 
-  # Alternate auth view capture with same flow context.
-  - input: assets/15-external-recipient-view.png
-    output: assets/annotated/step-13-recipient-auth-method.png
+  - input: assets/08-external-portal.png
+    output: assets/annotated/step-13-recipient-country-method.png
+    annotations:
+      - step: 13
+        label: Select country and signing method
+        rect: [359, 214, 630, 199]
+
+  - input: assets/04-recipient-fields__country-open.png
+    output: assets/annotated/step-14-country-open.png
+    annotations:
+      - step: 14
+        label: Country dropdown (open)
+        rect: [356, 489, 75, 175]
+
+  - input: assets/04-recipient-fields__select-contact-open.png
+    output: assets/annotated/step-15-select-contact-open.png
+    annotations:
+      - step: 15
+        label: Select contact modal
+        rect: [194, 160, 493, 281]
+
+  - input: assets/03-home-after-upload__template-open.png
+    output: assets/annotated/step-16-template-open.png
+    annotations:
+      - step: 16
+        label: Select template modal
+        rect: [194, 160, 493, 180]
+
+  - input: assets/05-history-filters__status-open.png
+    output: assets/annotated/faq-history-find-process.png
     annotations:
       - step: 1
-        label: "Authenticate with available method"
-        rect: [360, 295, 630, 116]
+        label: Set status and date filters
+        rect: [97, 245, 1153, 266]
+
+  - input: assets/02-home-create-process.png
+    output: assets/annotated/faq-management-menu.png
+    annotations:
+      - step: 2
+        label: Top menu (Management is role-based)
+        rect: [572, 16, 262, 30]
+
+  - input: assets/04-recipient-fields.png
+    output: assets/annotated/faq-anonymous-checkbox.png
+    annotations:
+      - step: 3
+        label: Anonymous checkbox location
+        rect: [686, 415, 168, 62]

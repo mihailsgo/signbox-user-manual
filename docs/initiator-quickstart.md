@@ -1,49 +1,58 @@
-# Initiator Quick Start
+# Initiator Quick Start 🚀
 
 Goal: create a signing process in 3-5 minutes.
 
-## Step 1 - Log in to internal portal
-- **Action**: Open `https://signbox.<tenant>` and enter your username/password.
-- **Expected result**: Login form accepts credentials.
-- **If not**: Verify account and correct portal URL.
+## Step 1 - Log in
+- **Action**: Open `https://signbox.<tenant>` and sign in.
+- **Expected result**: You reach `Home`.
+- **If not**: Verify account and portal URL.
 - **Screenshot**:
 
-![Step 1 login](../assets/annotated/step-01-login.png)
+<p align="center">
+  <img src="../assets/annotated/step-01-login.png" width="900" alt="Login field highlighted">
+  <br><em>Figure 1 — Enter login credentials.</em>
+</p>
 
-## Step 2 - Upload your document
-- **Action**: On `Home`, drag and drop or click upload.
+## Step 2 - Upload document
+- **Action**: Drag/drop or click upload area.
 - **Expected result**: File appears in process form.
-- **If not**: Check file format and retry with a PDF.
+- **If not**: Retry with a supported PDF/ASiC file.
 - **Screenshot**:
 
-![Step 2 upload](../assets/annotated/step-02-upload.png)
+<p align="center">
+  <img src="../assets/annotated/step-02-upload.png" width="900" alt="Upload area highlighted">
+  <br><em>Figure 2 — Upload the file in Home process form.</em>
+</p>
 
-## Step 3 - Set container and document type
-- **Action**: Review `Container name` and select `Document type`.
-- **Expected result**: Both fields are filled and valid.
-- **If not**: Re-upload file and re-open document type selector.
+## Step 3 - Set document type
+- **Action**: Open `Document type` and select one option.
+- **Expected result**: Document type is selected.
+- **If not**: Ask admin to confirm enabled document types.
 - **Screenshot**:
 
-![Step 3 container and type](../assets/annotated/step-03-container-type.png)
+<p align="center">
+  <img src="../assets/annotated/step-03-doctype-open.png" width="900" alt="Document type dropdown open">
+  <br><em>Figure 3 — Document type dropdown opened with visible options.</em>
+</p>
 
-## Step 4 - Add recipient basics
-- **Action**: Click `Add signer`, then fill name, email, role, and anonymous setting.
-- **Expected result**: Recipient row is complete with no required-field errors.
-- **If not**: Check missing fields and role/country selection.
+## Step 4 - Fill recipient basics
+- **Action**: Add signer and fill name, email, role, and anonymous setting.
+- **Expected result**: Recipient row has no validation errors.
+- **If not**: Re-check email format and required fields.
 - **Screenshot**:
 
-![Step 4 recipient fields](../assets/annotated/step-04-recipient-fields.png)
+<p align="center">
+  <img src="../assets/annotated/step-04-recipient-fields.png" width="900" alt="Recipient fields highlighted">
+  <br><em>Figure 4 — Complete recipient name/email fields.</em>
+</p>
 
 ## Step 5 - Start process
 - **Action**: Click `Start signing process`.
-- **Expected result**: Success message/modal appears.
-- **If not**: Check validation errors and required fields.
+- **Expected result**: Process is created and invitations are prepared.
+- **If not**: Resolve required-field warnings first.
 - **Screenshot**:
 
-![Step 5 start process button](../assets/annotated/step-09-start-process.png)
-
-## Optional checks
-- **Action**: Open `History` and confirm process status.
-- **Expected result**: New process is visible.
-- **If not**: Use status filter and date range.
-- **Screenshot**: No screenshot needed, because this is covered step-by-step in [History](history.md).
+<p align="center">
+  <img src="../assets/annotated/step-08-start-process.png" width="900" alt="Start signing process button highlighted">
+  <br><em>Figure 5 — Start signing process action.</em>
+</p>

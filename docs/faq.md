@@ -1,73 +1,65 @@
-# FAQ
+# FAQ ❓
 
-## Common questions
+## I cannot find my process. What should I do?
+Set `History` status and date filters first.
 
-### I cannot find my process. What should I do?
-Set `History` status to `Completed`, widen date range, and clear text filters.
+<p align="center">
+  <img src="../assets/annotated/faq-history-find-process.png" width="900" alt="History filters highlighted">
+  <br><em>Figure 1 — Use status/date filters to find your process.</em>
+</p>
 
-### What is the difference between recipient and recipient group?
-A recipient is one person. A recipient group is one workflow step that can contain multiple recipients.
+## Why do I not see Management menu?
+Management is role-gated. If your role does not include admin permissions, the menu item is not shown.
 
-### Why do I not see Management menu?
-Management pages are role-gated (admin role required).
+<p align="center">
+  <img src="../assets/annotated/faq-management-menu.png" width="900" alt="Top menu highlighted">
+  <br><em>Figure 2 — Top navigation area where role-based menu items appear.</em>
+</p>
 
-### Can I delete a process from UI?
-Standard current flow is `Cancel` for active processes. Full delete behavior can be configuration-dependent.
+## What does `Anonymous` mean?
+`Anonymous` means recipient matching does not rely on personal code.
 
-## Anonymous checkbox (important)
+<p align="center">
+  <img src="../assets/annotated/faq-anonymous-checkbox.png" width="900" alt="Anonymous checkbox highlighted">
+  <br><em>Figure 3 — Anonymous checkbox in recipient row.</em>
+</p>
 
-### What does `Anonymous` mean?
-`Anonymous` means recipient is created without personal code/phone in the process payload.
-
-### How does this work internally?
-- Frontend sends anonymous recipient with `signerPersonalCode = ''`.
-- Process service marks signer as anonymous when personal code is null/empty.
-- Matching logic:
-  - Non-anonymous recipient: `personalCode + country`
-  - Anonymous recipient: `signerId` fallback when personal code is empty
-
-### When should I use it?
-Use it only when your process policy allows identity flow without personal code.
-
-### When should I avoid it?
-Avoid for legally identity-bound signing where personal-code traceability is required.
+### How it works internally
+- Non-anonymous: `personalCode + country`.
+- Anonymous: fallback by `signerId` when personal code is empty.
 
 > [!WARNING]
-> Anonymous invitations should be treated as sensitive links. Do not forward them.
+> Use `Anonymous` only when policy allows identity flow without personal code.
 
-## New user simulation (Nina)
-Persona: Nina, non-technical office employee, creating first process.
+## Can I delete a process from UI?
+Typical user flow is to `Cancel` an active process. Full delete/archive behavior is configuration-dependent.
 
-1. **Q**: Which portal do I use to create a process?  
-   **A**: Internal portal (`signbox.<tenant>`).
-2. **Q**: What is the first thing I do?  
-   **A**: Upload a file on Home.
-3. **Q**: Why is container name already filled?  
-   **A**: It is auto-generated from filename and can be edited.
-4. **Q**: Why is document type required?  
-   **A**: It maps to configured process/document profile rules.
-5. **Q**: What is a recipient group?  
-   **A**: One workflow step; groups run step-by-step.
-6. **Q**: What does `Anonymous` change?  
-   **A**: Personal code is not used in primary matching path.
-7. **Q**: Can anonymous recipient still sign?  
-   **A**: Yes, using recipient-link/session context (signerId fallback).
-8. **Q**: When should I avoid anonymous?  
-   **A**: When legal/policy requires personal-code traceability.
-9. **Q**: Where do I set due date?  
-   **A**: Recipient group header.
-10. **Q**: What is `Sign first`?  
-    **A**: Initiator-first behavior (policy-dependent).
-11. **Q**: How do I find old processes quickly?  
-    **A**: History -> `Status = Completed`.
-12. **Q**: Can I edit active process?  
-    **A**: Yes, if status still allows updates.
-13. **Q**: Recipient did not get email. What next?  
-    **A**: Validate email, group step, notify settings, spam/quarantine.
-14. **Q**: Why are some actions disabled?  
+## New user simulation (Nina) 🎭
+
+1. **Q**: Which portal do I use first?  
+   **A**: `https://signbox.<tenant>` internal portal.
+2. **Q**: What is first required action?  
+   **A**: Upload file.
+3. **Q**: Why is `Document type` mandatory?  
+   **A**: It binds process rules/profile.
+4. **Q**: What is recipient group?  
+   **A**: One workflow step containing one or more recipients.
+5. **Q**: What does `Anonymous` change?  
+   **A**: Personal-code matching is skipped; fallback is `signerId`.
+6. **Q**: When should I avoid `Anonymous`?  
+   **A**: When legal traceability requires personal code.
+7. **Q**: Where do I set due date?  
+   **A**: Group header.
+8. **Q**: What is `Sign first`?  
+   **A**: Initiator signs before recipients.
+9. **Q**: How do I find completed items?  
+   **A**: `History` -> open `Status` -> choose `Completed`.
+10. **Q**: What if recipient did not get email?  
+    **A**: Verify email, spam, and workflow stage.
+11. **Q**: Why are buttons disabled?  
     **A**: Process is likely completed/canceled/read-only.
-15. **Q**: What should I send to support?  
-    **A**: Process ID, timestamp, role, exact error, screenshot.
+12. **Q**: What support data should I send?  
+    **A**: Process ID, timestamp, role, and screenshot.
 
-Full simulation narrative: [new-user-simulation.md](new-user-simulation.md)  
-Coverage mapping: [coverage-report.md](coverage-report.md)
+Detailed run: [new-user-simulation.md](new-user-simulation.md)  
+Coverage map: [coverage-report.md](coverage-report.md)

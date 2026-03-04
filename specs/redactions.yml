@@ -1,0 +1,201 @@
+# Screenshot redaction specification.
+# Purpose: replace real document names, emails, and personal identifiers
+# with safe test values before annotation generation.
+#
+# Coordinates are pixels: [x, y, width, height].
+# Output is in-place under /assets.
+
+default_font_size: 20
+
+images:
+  - input: assets/02-home-create-process.png
+    output: assets/02-home-create-process.png
+    regions:
+      - rect: [665, 347, 320, 32]
+        text: initiator@example.com
+
+  - input: assets/03-home-after-upload.png
+    output: assets/03-home-after-upload.png
+    regions:
+      - rect: [120, 228, 300, 28]
+        text: Sample-Contract-01.pdf
+      - rect: [95, 281, 300, 26]
+        text: Sample-Contract-01.asice
+      - rect: [675, 334, 430, 42]
+        text: initiator@example.com
+
+  - input: assets/03-home-after-upload__doctype-open.png
+    output: assets/03-home-after-upload__doctype-open.png
+    regions:
+      - rect: [120, 315, 300, 28]
+        text: Sample-Contract-01.pdf
+      - rect: [100, 382, 300, 28]
+        text: Sample-Contract-01.asice
+      - rect: [676, 463, 430, 42]
+        text: initiator@example.com
+      - rect: [680, 462, 580, 44]
+        text: initiator@example.com
+      - rect: [670, 430, 620, 100]
+        text: initiator@example.com
+      - rect: [682, 463, 572, 32]
+        text: redacted@example.com
+
+  - input: assets/03-home-after-upload__template-open.png
+    output: assets/03-home-after-upload__template-open.png
+    regions:
+      - rect: [120, 205, 300, 28]
+        text: Sample-Contract-01.pdf
+      - rect: [100, 255, 300, 28]
+        text: Sample-Contract-01.asice
+      - rect: [675, 307, 430, 42]
+        text: initiator@example.com
+
+  - input: assets/04-recipient-fields.png
+    output: assets/04-recipient-fields.png
+    regions:
+      - rect: [120, 205, 300, 28]
+        text: NDA_Test.pdf
+      - rect: [100, 254, 300, 28]
+        text: NDA_Test.asice
+      - rect: [675, 307, 430, 42]
+        text: initiator@example.com
+
+  - input: assets/04-recipient-fields__country-open.png
+    output: assets/04-recipient-fields__country-open.png
+    regions:
+      - rect: [120, 315, 300, 28]
+        text: NDA_Test.pdf
+      - rect: [100, 382, 300, 28]
+        text: NDA_Test.asice
+      - rect: [676, 463, 430, 42]
+        text: initiator@example.com
+
+  - input: assets/04-recipient-fields__select-contact-open.png
+    output: assets/04-recipient-fields__select-contact-open.png
+    regions:
+      - rect: [120, 205, 300, 28]
+        text: Invoice_Test_2026-01.pdf
+      - rect: [100, 255, 300, 28]
+        text: Invoice_Test_2026-01.asice
+      - rect: [675, 307, 430, 42]
+        text: initiator@example.com
+      - rect: [230, 190, 450, 225]
+        text: Sample contacts (redacted)
+      - rect: [205, 190, 500, 500]
+        text: Sample contacts (redacted)
+      - rect: [205, 215, 520, 260]
+        text: Sample contacts (redacted)
+
+  - input: assets/05-history-filters.png
+    output: assets/05-history-filters.png
+    regions:
+      - rect: [675, 179, 430, 42]
+        text: initiator@example.com
+      - rect: [95, 420, 1120, 260]
+        text: Sample process list (redacted)
+
+  - input: assets/05-history-filters__status-open.png
+    output: assets/05-history-filters__status-open.png
+    regions:
+      - rect: [675, 179, 430, 42]
+        text: initiator@example.com
+      - rect: [60, 330, 1300, 430]
+        text: Sample process list (redacted)
+
+  - input: assets/06-recipient-name.png
+    output: assets/06-recipient-name.png
+    regions:
+      - rect: [120, 205, 300, 28]
+        text: Sample-Contract-01.pdf
+      - rect: [100, 255, 300, 28]
+        text: Sample-Contract-01.asice
+      - rect: [675, 307, 430, 42]
+        text: initiator@example.com
+
+  - input: assets/07-recipient-email.png
+    output: assets/07-recipient-email.png
+    regions:
+      - rect: [120, 205, 300, 28]
+        text: Sample-Contract-01.pdf
+      - rect: [100, 255, 300, 28]
+        text: Sample-Contract-01.asice
+      - rect: [675, 307, 430, 42]
+        text: initiator@example.com
+
+  - input: assets/08-group-due-date.png
+    output: assets/08-group-due-date.png
+    regions:
+      - rect: [120, 205, 300, 28]
+        text: Sample-Contract-01.pdf
+      - rect: [100, 255, 300, 28]
+        text: Sample-Contract-01.asice
+      - rect: [675, 307, 430, 42]
+        text: initiator@example.com
+
+  - input: assets/09-sign-first.png
+    output: assets/09-sign-first.png
+    regions:
+      - rect: [120, 205, 300, 28]
+        text: Sample-Contract-01.pdf
+      - rect: [100, 255, 300, 28]
+        text: Sample-Contract-01.asice
+      - rect: [675, 307, 430, 42]
+        text: initiator@example.com
+
+  - input: assets/10-start-process-button.png
+    output: assets/10-start-process-button.png
+    regions:
+      - rect: [120, 205, 300, 28]
+        text: Sample-Contract-01.pdf
+      - rect: [100, 255, 300, 28]
+        text: Sample-Contract-01.asice
+      - rect: [675, 307, 430, 42]
+        text: initiator@example.com
+
+  - input: assets/11-history-status-filter.png
+    output: assets/11-history-status-filter.png
+    regions:
+      - rect: [675, 179, 430, 42]
+        text: initiator@example.com
+      - rect: [95, 420, 1120, 260]
+        text: Sample process list (redacted)
+
+  - input: assets/12-history-completed-list.png
+    output: assets/12-history-completed-list.png
+    regions:
+      - rect: [675, 179, 430, 42]
+        text: initiator@example.com
+      - rect: [95, 420, 1120, 260]
+        text: Sample process list (redacted)
+
+  - input: assets/13-process-update.png
+    output: assets/13-process-update.png
+    regions:
+      - rect: [92, 160, 640, 120]
+        text: Sample container metadata
+      - rect: [90, 390, 820, 100]
+        text: Sample signer row
+      - rect: [200, 246, 520, 28]
+        text: signer@example.com
+      - rect: [200, 229, 320, 26]
+        text: Sample-Contract-01.pdf
+      - rect: [90, 228, 520, 28]
+        text: Sample signer metadata
+      - rect: [90, 422, 520, 34]
+        text: signer@example.com
+
+  - input: assets/14-process-cancel.png
+    output: assets/14-process-cancel.png
+    regions:
+      - rect: [92, 160, 640, 120]
+        text: Sample container metadata
+      - rect: [90, 390, 820, 100]
+        text: Sample signer row
+      - rect: [200, 246, 520, 28]
+        text: signer@example.com
+      - rect: [200, 229, 320, 26]
+        text: Sample-Contract-01.pdf
+      - rect: [90, 228, 520, 28]
+        text: Sample signer metadata
+      - rect: [90, 422, 520, 34]
+        text: signer@example.com

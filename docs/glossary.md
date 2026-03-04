@@ -1,4 +1,4 @@
-# Glossary
+# Glossary 📚
 
 - **ASiC-E**: Container format used for signed packages.
 - **Anonymous recipient**: Recipient record created without personal code in process payload.

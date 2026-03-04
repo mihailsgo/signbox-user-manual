@@ -1,91 +1,104 @@
-# Initiator Deep Dive
+# Initiator Deep Dive 🧠
 
 This page explains each creation field in detail.
 
-## Step 1 - Upload and verify file area
-- **Action**: Upload file in the Home process form.
-- **Expected result**: File appears and form expands.
-- **If not**: Try a supported file and refresh once.
+## Step 1 - Upload area
+- **Action**: Upload your file in `Home`.
+- **Expected result**: File is attached and form expands.
+- **If not**: Refresh once and upload again.
 - **Screenshot**:
 
-![Upload area](../assets/annotated/step-02-upload.png)
+<p align="center">
+  <img src="../assets/annotated/step-02-upload.png" width="900" alt="Upload area highlighted">
+  <br><em>Figure 1 — Upload area in process form.</em>
+</p>
 
-## Step 2 - Understand container behavior
-- **Action**: Review auto-generated `Container name`.
-- **Expected result**: Container name is based on uploaded file.
-- **If not**: Re-upload and edit container name manually.
+## Step 2 - Document type dropdown
+- **Action**: Open `Document type` and choose an option.
+- **Expected result**: One type is selected.
+- **If not**: Confirm document types are configured for your tenant.
 - **Screenshot**:
 
-![Container name](../assets/annotated/step-03-container-type.png)
+<p align="center">
+  <img src="../assets/annotated/step-03-doctype-open.png" width="900" alt="Document type dropdown open">
+  <br><em>Figure 2 — Document type dropdown in open state.</em>
+</p>
 
-## Step 3 - Choose document type
-- **Action**: Open and select `Document type`.
-- **Expected result**: A valid document type is selected.
-- **If not**: Ask admin if profile/type is configured.
+## Step 3 - Recipient fields
+- **Action**: Fill full name, email, and role.
+- **Expected result**: Recipient row is valid.
+- **If not**: Check required fields marked with `*`.
 - **Screenshot**:
 
-![Document type](../assets/annotated/step-03-container-type.png)
+<p align="center">
+  <img src="../assets/annotated/step-04-recipient-fields.png" width="900" alt="Recipient fields highlighted">
+  <br><em>Figure 3 — Recipient fields for signer setup.</em>
+</p>
 
-## Step 4 - Add recipient row
-- **Action**: Click `Add signer`.
-- **Expected result**: New recipient row appears.
-- **If not**: Ensure process form is loaded and not read-only.
+## Step 4 - Country dropdown
+- **Action**: Open `Country` and pick recipient country.
+- **Expected result**: Country value is selected in row.
+- **If not**: Verify allowed countries in this profile.
 - **Screenshot**:
 
-![Add signer](../assets/annotated/step-04-recipient-fields.png)
+<p align="center">
+  <img src="../assets/annotated/step-14-country-open.png" width="900" alt="Country dropdown open">
+  <br><em>Figure 4 — Country dropdown opened with options.</em>
+</p>
 
-## Step 5 - Fill recipient fields
-- **Action**: Fill recipient full name, email, role, and country/personal data where required.
-- **Expected result**: Row has no validation warnings.
-- **If not**: Check email format and anonymous toggle behavior.
+## Step 5 - Anonymous checkbox
+- **Action**: Set `Anonymous` based on your process policy.
+- **Expected result**: Personal-code logic changes for that recipient.
+- **If not**: Confirm legal/compliance requirements with your admin.
 - **Screenshot**:
 
-![Recipient fields](../assets/annotated/step-04-recipient-fields.png)
+<p align="center">
+  <img src="../assets/annotated/step-05-anonymous-checkbox.png" width="900" alt="Anonymous checkbox highlighted">
+  <br><em>Figure 5 — Anonymous checkbox location.</em>
+</p>
 
-## Step 6 - Configure `Anonymous` correctly
-- **Action**: Toggle the `Anonymous` checkbox based on policy.
-- **Expected result**: Personal code requirement changes accordingly.
-- **If not**: Re-check legal/process requirements before launch.
-- **Screenshot**:
-
-![Anonymous checkbox](../assets/annotated/step-04-recipient-fields.png)
-
-### How `Anonymous` works (important)
-- Frontend sends anonymous recipient with `signerPersonalCode = ''`.
-- Process service marks signer anonymous when personal code is empty/null.
-- Matching path:
-  - Non-anonymous: `personalCode + country`
-  - Anonymous: `signerId` fallback when personal code is empty
+### How `Anonymous` works
+- Non-anonymous matching: `personalCode + country`.
+- Anonymous matching: fallback by `signerId` when personal code is empty.
 
 > [!WARNING]
-> Use anonymous only when your process policy allows identity flow without personal code.
+> Use `Anonymous` only if your organization policy allows identity flow without personal code.
 
-## Step 7 - Set due date for recipient group
+## Step 6 - Group due date
 - **Action**: Set due date in group header.
-- **Expected result**: Due date value appears for that group.
-- **If not**: Verify date picker permissions and timezone assumptions.
+- **Expected result**: Group due date appears next to recipient group title.
+- **If not**: Check date permissions/timezone.
 - **Screenshot**:
 
-![Due date](../assets/annotated/step-07-due-date.png)
+<p align="center">
+  <img src="../assets/annotated/step-06-due-date.png" width="900" alt="Group due date control highlighted">
+  <br><em>Figure 6 — Group due date control.</em>
+</p>
 
-## Step 8 - Add comments and Sign first
-- **Action**: Add process comment and set `Sign first` if needed.
-- **Expected result**: Comment saved in form and Sign first checkbox selected.
-- **If not**: Confirm no disabled state in form.
+## Step 7 - Sign first
+- **Action**: Enable `Sign first` if initiator must sign before recipients.
+- **Expected result**: Checkbox is enabled.
+- **If not**: Check whether this option is allowed in current configuration.
 - **Screenshot**:
 
-![Sign first](../assets/annotated/step-08-sign-first.png)
+<p align="center">
+  <img src="../assets/annotated/step-07-sign-first.png" width="900" alt="Sign first checkbox highlighted">
+  <br><em>Figure 7 — Sign first option.</em>
+</p>
 
-## Step 9 - Save draft or start process
-- **Action**: Click `Save as draft` or `Start signing process`.
-- **Expected result**: Draft created or process started successfully.
-- **If not**: Resolve required-field errors and retry.
+## Step 8 - Start process
+- **Action**: Click `Start signing process`.
+- **Expected result**: Process starts and invitations are sent per workflow.
+- **If not**: Resolve validation errors first.
 - **Screenshot**:
 
-![Start process](../assets/annotated/step-09-start-process.png)
+<p align="center">
+  <img src="../assets/annotated/step-08-start-process.png" width="900" alt="Start signing process button highlighted">
+  <br><em>Figure 8 — Start process action.</em>
+</p>
 
-## Step 10 - Sequential groups behavior
-- **Action**: Add multiple recipient groups to create multi-step flow.
-- **Expected result**: Recipients in same group act in parallel; groups execute step-by-step.
-- **If not**: Check process details in `History` after start.
-- **Screenshot**: No screenshot needed, because behavior is temporal (workflow progression) and not represented by a single static UI block.
+## Step 9 - Sequential group behavior
+- **Action**: Use multiple recipient groups for sequential workflow.
+- **Expected result**: Group 2 starts only when Group 1 is done.
+- **If not**: Check recipient grouping in process details.
+- **Screenshot**: No screenshot needed, because this is runtime workflow behavior rather than one static control.

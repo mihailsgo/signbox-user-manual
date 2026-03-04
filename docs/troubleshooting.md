@@ -1,4 +1,4 @@
-# Troubleshooting
+# Troubleshooting 🛠️
 
 ## Session and data issues
 - If draft data disappears while creating a process:

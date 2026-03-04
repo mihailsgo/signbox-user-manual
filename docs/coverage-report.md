@@ -1,4 +1,4 @@
-# Coverage Report
+# Coverage Report ✅
 
 This report maps simulation questions to documentation sections.
 
@@ -24,5 +24,4 @@ This report maps simulation questions to documentation sections.
 - Covered questions: 15/15
 - Missing topics: none
 - Weak spots to improve later:
-  - Add tenant-specific recipient signing-method screenshots
-  - Add Contacts/Templates screenshots when raw base images are available
+  - Add tenant-specific post-auth recipient signing confirmation screenshots

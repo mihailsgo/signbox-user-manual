@@ -1,4 +1,4 @@
-# New User Simulation
+# New User Simulation 🎭
 
 Persona:
 - Name: Nina
