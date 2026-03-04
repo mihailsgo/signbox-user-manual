@@ -63,3 +63,30 @@ Use contacts and templates to speed up repetitive process creation.
 
 > [!NOTE]
 > Scope visibility is configuration-dependent.
+
+## Scope visibility rules (contacts and templates)
+
+### Scope meaning
+- `User` scope in business language = `Personal` scope in current UI/API.
+- `Personal`: visible to the creator (owner) only.
+- `Group`: visible to users who belong to the same assigned group.
+- `Global`: visible to all users who can access this module.
+- `All`: filter value only (not a stored ownership scope).
+
+### Visibility and permissions by scope
+- `Personal`:
+  - Read: owner.
+  - Update/Delete: owner only.
+- `Group`:
+  - Read: users in that group.
+  - Update/Delete: users in that group.
+- `Global`:
+  - Read: all users.
+  - Update/Delete: allowed by backend policy (typically admin-governed).
+
+### Why users may see different options
+- Frontend can restrict which scopes are available in UI:
+  - `VITE_CONTACT_ALLOWED_SCOPES`
+  - `VITE_TEMPLATE_ALLOWED_SCOPES`
+- If `ALL` is selected in filters, the UI may still query only allowed scopes from tenant config.
+- Result: two users in different groups/roles can see different contact/template lists.

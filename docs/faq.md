@@ -28,6 +28,23 @@ Management is role-gated. If your role does not include admin permissions, the m
 - Non-anonymous: `personalCode + country`.
 - Anonymous: fallback by `signerId` when personal code is empty.
 
+### How it affects external portal login
+- `Anonymous` does not mean public access.
+- The recipient still needs a valid recipient invitation context (`signerId` from invitation flow).
+- Non-anonymous recipient:
+  - Must match recipient `personalCode + country`.
+- Anonymous recipient:
+  - Personal code is not used for recipient matching.
+  - Recipient task is resolved by `signerId`.
+
+### Who can sign and who cannot
+- Can sign:
+  - Recipient with correct invitation (`signerId`) and active step.
+- Cannot sign:
+  - User with wrong/unknown `signerId`.
+  - Non-anonymous recipient with mismatched personal code or country.
+  - Recipient when due date/status rules block signing.
+
 > [!WARNING]
 > Use `Anonymous` only when policy allows identity flow without personal code.
 
@@ -60,6 +77,12 @@ Typical user flow is to `Cancel` an active process. Full delete/archive behavior
     **A**: Process is likely completed/canceled/read-only.
 12. **Q**: What support data should I send?  
     **A**: Process ID, timestamp, role, and screenshot.
+13. **Q**: Does `Anonymous` mean anyone with email can sign?  
+    **A**: No. Recipient task is still bound to the recipient invitation (`signerId`).
+14. **Q**: In anonymous mode, does entered personal code matter?  
+    **A**: No. Anonymous recipient is matched by `signerId`, not personal code.
+15. **Q**: Why can one colleague see a Group contact/template and another cannot?  
+    **A**: Group scope visibility depends on membership in that exact group.
 
 Detailed run: [new-user-simulation.md](new-user-simulation.md)  
 Coverage map: [coverage-report.md](coverage-report.md)
