@@ -15,7 +15,7 @@ images:
     annotations:
       - step: 2
         label: Upload document
-        rect: [78, 171, 922, 60]
+        rect: [106, 236, 1260, 80]
 
   - input: assets/03-home-after-upload__doctype-open.png
     output: assets/annotated/step-03-doctype-open.png
