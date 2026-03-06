@@ -1,92 +1,173 @@
-# Contacts and Templates 👥🗂️
+# Contacts and Templates
 
-Use contacts and templates to speed up repetitive process creation.
+Use contacts and templates to reduce repeated manual work when the same people or the same signing structure are used often.
+
+## Why These Features Matter
+
+Contacts help you reuse recipient details safely. Templates help you reuse process structure.
+
+Use contacts when:
+- the same signer is added often
+- you want less typing and fewer input mistakes
+- you want default role and scope behavior ready in advance
+
+Use templates when:
+- the same workflow repeats regularly
+- the same recipient structure is used across many documents
+- you want to standardize process setup
 
 ## Contacts
 
-## Step 1 - Open Contacts-related action
-- **Action**: In process form, click `Select contact`.
-- **Expected result**: Contacts modal opens.
-- **If not**: Check your role permissions for contacts.
-- **Screenshot**:
+### Add a saved contact to a process
+
+In the process form, click `Select contact`.
 
 <p align="center">
   <img src="../assets/annotated/step-15-select-contact-open.png" width="900" alt="Select contact modal highlighted">
-  <br><em>Figure 1 — Open Select contact modal from recipient area.</em>
+  <br><em>Figure 1 - Open the contact selector from the recipient area.</em>
 </p>
 
-## Step 2 - Filter and choose contact
-- **Action**: Use name/email filters and pick a contact row.
-- **Expected result**: Contact is added to recipient group.
-- **If not**: Verify contact scope and page filter settings.
-- **Screenshot**:
+What you can do in the selector:
+- search by name
+- search by email
+- choose an existing row and insert it into the current recipient group
 
-<p align="center">
-  <img src="../assets/annotated/step-15-select-contact-open.png" width="900" alt="Contact modal with filters">
-  <br><em>Figure 2 — Contact filter and selection area.</em>
-</p>
+Expected result:
+- the selected contact is added to the recipient group and can still be adjusted before launch
+
+### Create a new contact
+
+Contacts can usually also be created from the dedicated contacts page.
+
+Typical contact fields:
+- name
+- email
+- country
+- role
+- scope
+- personal code, if used in non-anonymous flows
+
+Why these fields matter:
+- `Country` supports the correct identity/signing context
+- `Role` pre-fills the intended participant role
+- `Scope` controls who can reuse the contact
+
+### Edit and delete contacts
+
+Existing contacts can typically be:
+- edited when recipient details change
+- deleted when no longer needed
+
+Before deleting a contact:
+- confirm it is not a frequently reused entry for other users
+- confirm the correct item is selected, especially in group-shared lists
+
+## Scope Rules for Contacts
+
+### Scope meaning
+
+- `Personal`: visible only to the creator
+- `Group`: visible to users in the same group
+- `Global`: visible tenant-wide, depending on permissions
+- `All`: filter value only, not a stored ownership scope
+
+### Practical scope guidance
+
+Use:
+- `Personal` for your own private shortcuts
+- `Group` for department or team reuse
+- `Global` only when the contact is intended for broad organizational reuse
 
 ## Templates
 
-## Step 3 - Open template selector
-- **Action**: Click `Select template`.
-- **Expected result**: Template modal opens.
-- **If not**: Confirm template feature is enabled for your role.
-- **Screenshot**:
+Templates save a process setup for reuse.
+
+Typical template content:
+- selected document type
+- recipient and group structure
+- roles
+- comments
+- due date logic, depending on the implementation
+
+### Open template selector
+
+Click `Select template` in the process form.
 
 <p align="center">
   <img src="../assets/annotated/step-16-template-open.png" width="900" alt="Template modal highlighted">
-  <br><em>Figure 3 — Open Select template modal.</em>
+  <br><em>Figure 2 - Open the template selector from the create-process page.</em>
 </p>
 
-## Step 4 - Load template
-- **Action**: Search/select template from list and apply.
-- **Expected result**: Process form is prefilled.
-- **If not**: Verify template scope (`Personal`/`Group`/`Global`) and ownership.
-- **Screenshot**:
+Expected result:
+- the template modal opens
+- you can search or select an existing template
 
-<p align="center">
-  <img src="../assets/annotated/step-16-template-open.png" width="900" alt="Template list in modal">
-  <br><em>Figure 4 — Template filter/list area used to load template.</em>
-</p>
+### Load a template
 
-## Step 5 - Save template
-- **Action**: After preparing process fields, click `Save template`.
-- **Expected result**: Template is saved for future reuse.
-- **If not**: Check permission for selected scope.
-- **Screenshot**:
+Choose the template and apply it to the process.
 
-<p align="center">
-  <img src="../assets/annotated/step-08-start-process.png" width="900" alt="Bottom action buttons including Save template">
-  <br><em>Figure 5 — Save template button location in process form.</em>
-</p>
+What happens next:
+- the process form is prefilled
+- you can still review and adjust recipients, comments, or other fields before launch
 
-> [!NOTE]
-> Scope visibility is configuration-dependent.
+Best practice:
+- always confirm recipient list and due date before starting a templated process
 
-## Scope visibility rules (contacts and templates)
+### Save a template
 
-### Scope meaning
-- `User` scope in business language = `Personal` scope in current UI/API.
-- `Personal`: visible to the creator (owner) only.
-- `Group`: visible to users who belong to the same assigned group.
-- `Global`: visible to all users who can access this module.
-- `All`: filter value only (not a stored ownership scope).
+After preparing a process structure, click `Save template`.
 
-### Visibility and permissions by scope
-- `Personal`:
-  - Read: owner.
-  - Update/Delete: owner only.
-- `Group`:
-  - Read: users in that group.
-  - Update/Delete: users in that group.
-- `Global`:
-  - Read: all users.
-  - Update/Delete: allowed by backend policy (typically admin-governed).
+Expected result:
+- the current setup is stored for future reuse
 
-### Why users may see different options
-- Frontend can restrict which scopes are available in UI:
-  - `VITE_CONTACT_ALLOWED_SCOPES`
-  - `VITE_TEMPLATE_ALLOWED_SCOPES`
-- If `ALL` is selected in filters, the UI may still query only allowed scopes from tenant config.
-- Result: two users in different groups/roles can see different contact/template lists.
+What to define when saving:
+- template name
+- template scope
+
+Use naming that helps people understand when to use the template, for example:
+- `HR contract - one signer`
+- `Board approval - sequential`
+- `Vendor agreement - two-stage`
+
+## Contacts vs Templates
+
+| Feature | Best used for | Example |
+|---|---|---|
+| Contact | one reusable person or participant entry | CFO signer, HR manager, legal approver |
+| Template | one reusable workflow setup | one-signer contract, two-stage approval, board signing flow |
+
+## Common Mistakes
+
+### Using a template without reviewing the loaded data
+
+Templates accelerate setup, but they should not replace review. Always confirm:
+- recipient names
+- group order
+- role assignments
+- comments
+- due date
+
+### Saving too many nearly identical templates
+
+If too many templates exist, users stop trusting the list. Prefer:
+- fewer templates
+- clear names
+- stable scope policy
+
+### Wrong scope choice
+
+If a useful contact or template cannot be found, the problem is often scope, not deletion.
+
+Check:
+- whether it was saved as `Personal` instead of `Group`
+- whether the current user belongs to the right group
+- whether tenant configuration restricts visible scopes
+
+## Recommended Working Model
+
+For most organizations:
+- maintain shared contacts for recurring signers
+- maintain a small, curated set of templates for the most common workflows
+- avoid turning templates into copies of every one-off scenario
+
+This keeps the manual process simple and makes SignBox easier to operate consistently.

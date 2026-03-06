@@ -1,89 +1,176 @@
-﻿# Recipient Guide ✍️
+# Recipient Guide
 
-This section is for recipients who receive a SignBox invitation link.
+This section is for people who receive a SignBox invitation and need to review, sign, approve, or decline a document.
 
-## External portal flow (end-to-end)
+## The Recipient Flow
 
-## Step 1 - Open your invitation link
-- **Action**: Open the signing link from your email.
-- **Expected result**: External SignBox portal opens and asks for authentication.
-- **If not**: Ask initiator to resend the invitation.
-- **Screenshot**: No screenshot needed, because email client UI is outside SignBox.
+The recipient experience normally follows this order:
 
-## Step 2 - Choose country and signing method
-- **Action**: Select your country tab and one available method (`Smart-ID`, `ID card`, `SMS`, etc.).
-- **Expected result**: Authentication request is started.
-- **If not**: Check if your country/method is enabled for this recipient.
-- **Screenshot**:
+1. Receive an email invitation
+2. Open the SignBox link
+3. Select country and signing method
+4. Authenticate
+5. Review the document
+6. Sign, approve, or decline
+7. Download the result when available
+
+## Step 1 - Open the Invitation
+
+Open the invitation email and use the provided SignBox link.
+
+What the invitation usually tells you:
+- who requested the signing
+- what action is expected from you
+- when the action should be completed
+
+Practical note:
+- the exact email branding may differ by tenant
+- do not forward the invitation link to other people
+
+## Step 2 - Authenticate in the External Portal
+
+After opening the invitation link, SignBox redirects you to the external portal where available authentication methods depend on your country and tenant configuration.
 
 <p align="center">
   <img src="../assets/annotated/step-13-recipient-country-method.png" width="900" alt="External portal country and method selector">
-  <br><em>Figure 1 — Authentication method selection in external portal.</em>
+  <br><em>Figure 1 - Select your country and available authentication method.</em>
 </p>
 
-## Step 3 - Approve identity in provider app/device
-- **Action**: Confirm the request in your identity provider app/device.
-- **Expected result**: You are logged into the external portal.
-- **If not**: Retry once, then verify phone/device network and provider status.
-- **Screenshot**: No screenshot needed, because provider confirmation screens are outside SignBox.
+Typical methods may include:
+- Smart-ID
+- ID card
+- SMS or other configured methods
 
-## Step 4 - Open `My documents` list
-- **Action**: Go to `My documents` in top navigation.
-- **Expected result**: You see your assigned signing processes with filters and statuses.
-- **If not**: Confirm you used the same invitation link from the assignment email.
-- **Screenshot**:
+If you do not see the expected method:
+- check whether your country was set correctly for your recipient row
+- confirm that the method is supported in your tenant
+
+## Step 3 - Confirm Identity in the Provider
+
+After choosing a method, confirm the request in the identity provider app or device.
+
+Expected result:
+- you are authenticated into the external portal
+- your assigned document becomes available for review
+
+If this fails:
+- retry once
+- check device connectivity
+- verify that the signing method is valid and active
+
+## Step 4 - Open Your Task
+
+Recipients may see the task directly after authentication or through the `My documents` area in the external portal.
 
 <p align="center">
   <img src="../assets/external-portal-my-documents-blur.png" width="900" alt="External portal document list with blurred document names">
-  <br><em>Figure 2 — `My documents` list view. Document names are intentionally blurred for privacy.</em>
+  <br><em>Figure 2 - `My documents` view used to locate assigned tasks.</em>
 </p>
 
-## Step 5 - Filter and find your task
-- **Action**: Use container search, status filter, and date range.
-- **Expected result**: Required task row is visible.
-- **If not**: Set status to `All` and widen date range.
-- **Screenshot**:
+Use filters if needed:
+- container or document search
+- status
+- date range
 
-<p align="center">
-  <img src="../assets/external-portal-my-documents-blur.png" width="900" alt="External portal document list filters">
-  <br><em>Figure 3 — Find your process using search and filters.</em>
-</p>
+## Step 5 - Review the Document
 
-## Step 6 - Open process details
-- **Action**: Click the process row (document/container name).
-- **Expected result**: Document detail view opens with signing controls.
-- **If not**: Refresh page and open the row again.
-- **Screenshot**:
+Open the process row to see document details and available actions.
 
 <p align="center">
   <img src="../assets/external-portal-document-view.png" width="900" alt="External portal document detail view with Sign and Decline">
-  <br><em>Figure 4 — Document detail view with `Sign` and `Decline` actions.</em>
+  <br><em>Figure 3 - Document detail view with recipient actions.</em>
 </p>
 
-## Step 7 - Review file before signing
-- **Action**: Use view/download icons in `Content` area to inspect the file.
-- **Expected result**: Document opens or downloads.
-- **If not**: Retry download and check browser popup/download settings.
-- **Screenshot**:
+Before signing, you should review:
+- document content
+- comments or instructions
+- current signatures, if any
+- due date, if shown
 
-<p align="center">
-  <img src="../assets/external-portal-document-view.png" width="900" alt="External portal content area and file actions">
-  <br><em>Figure 5 — Content area with file preview/download controls.</em>
-</p>
+You can usually:
+- preview the original file
+- download the file for local inspection
 
-## Step 8 - Sign or decline
-- **Action**: Click `Sign` to complete, or `Decline` to reject.
-- **Expected result**: Status updates after confirmation.
-- **If not**: Recheck authentication and due-date/status constraints.
-- **Screenshot**:
+Best practice:
+- verify the document content before signing
+- do not rely only on file name or sender name
 
-<p align="center">
-  <img src="../assets/external-portal-document-view.png" width="900" alt="External portal Sign and Decline buttons">
-  <br><em>Figure 6 — Final recipient action buttons.</em>
-</p>
+## Step 6 - Sign the Document
 
-## Important note about anonymous recipients
-`Anonymous` does not make a process public. Only users with the correct invitation link can access and sign their assigned task.
+Click `Sign` when you are ready.
+
+What happens:
+- SignBox starts the final signing step
+- the action is confirmed through your selected identity/signing method
+- after success, your signature appears in the process status
+
+Result:
+- the process moves forward to the next signer or next recipient group
+- when all required actions are completed, the final result becomes available
+
+## Step 7 - Approve or Decline
+
+Depending on your assigned role, you may be asked to approve instead of sign.
+
+If you need to reject the process, use `Decline`.
+
+What `Decline` does:
+- stops your participation in the intended positive flow
+- usually asks for a comment
+- informs the initiator that the document was declined
+
+Use a comment when declining if the initiator needs a clear reason.
+
+## Step 8 - Download the Result
+
+After signing is finished, the signed document or completed result can usually be downloaded from the process view.
+
+This is useful when:
+- you need a local copy
+- you want to verify the visible signature result
+- your organization expects you to archive the result locally as well
+
+## Anonymous Recipients
+
+`Anonymous` does not make the process public.
+
+It means:
+- personal-code matching is not used to validate the recipient
+- access still requires the correct invitation link
+- the process is still limited to the intended recipient flow
 
 > [!WARNING]
-> Do not forward or share invitation links.
+> Do not share invitation links. A valid link is still a protected access path.
+
+## Common Recipient Problems
+
+### I did not receive the invitation
+
+Check:
+- spam or junk folder
+- whether the initiator used the correct email address
+- whether your recipient group is currently active in a sequential process
+
+### I cannot authenticate
+
+Check:
+- selected country
+- enabled authentication method
+- provider availability
+- validity of your signing method
+
+### I can open the portal but not the document
+
+Possible reasons:
+- wrong invitation link
+- process was canceled or completed already
+- identity does not match the intended recipient in a non-anonymous flow
+
+### Smart-ID or eID does not work
+
+This is usually a signing-method readiness issue rather than a SignBox UI issue.
+
+Check:
+- whether your Smart-ID account is qualified for signing
+- whether your ID card works correctly in browser-based signing
+- whether your device and middleware are ready

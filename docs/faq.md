@@ -1,85 +1,135 @@
-# FAQ ❓
+# FAQ
 
 ## I cannot find my process. What should I do?
-Set `History` status and date filters first.
+
+Open `History` and start with the broadest reasonable filters.
 
 <p align="center">
   <img src="../assets/annotated/faq-history-find-process.png" width="900" alt="History filters highlighted">
-  <br><em>Figure 1 — Use status/date filters to find your process.</em>
+  <br><em>Figure 1 - Use history filters to locate a process.</em>
 </p>
 
-## Why do I not see Management menu?
-Management is role-gated. If your role does not include admin permissions, the menu item is not shown.
+Recommended order:
+- widen date range
+- set status to a broader value
+- search by container or document name
+- verify initiator identity
 
-<p align="center">
-  <img src="../assets/annotated/faq-management-menu.png" width="900" alt="Top menu highlighted">
-  <br><em>Figure 2 — Top navigation area where role-based menu items appear.</em>
-</p>
+## Why is `Document type` important?
+
+`Document type` is usually tied to process rules and archive behavior. If the wrong type is selected, the process may be routed incorrectly or fail business validation.
 
 ## What does `Anonymous` mean?
+
 `Anonymous` means recipient matching does not rely on personal code.
 
 <p align="center">
   <img src="../assets/annotated/faq-anonymous-checkbox.png" width="900" alt="Anonymous checkbox highlighted">
-  <br><em>Figure 3 — Anonymous checkbox in recipient row.</em>
+  <br><em>Figure 2 - Anonymous checkbox in the recipient row.</em>
 </p>
 
-### How it works internally
-- Non-anonymous: `personalCode + country`.
-- Anonymous: personal code matching is skipped, but access still requires the correct invitation link.
+What it does not mean:
+- it does not make the process public
+- it does not allow open access without the invitation link
 
-### How it affects external portal login
-- `Anonymous` does not mean public access.
-- The recipient still needs the correct invitation link.
-- Non-anonymous recipient:
-  - Must match recipient `personalCode + country`.
-- Anonymous recipient:
-  - Personal code is not used for recipient matching.
-  - Access is still limited to the recipient who has the right invitation link.
+What it changes:
+- personal-code-based recipient matching is skipped
+- access still depends on the correct invitation link and valid process state
 
-### Who can sign and who cannot
-- Can sign:
-  - Recipient with the correct invitation link and active step.
-- Cannot sign:
-  - User without the correct invitation link.
-  - Non-anonymous recipient with mismatched personal code or country.
-  - Recipient when due date/status rules block signing.
+## Why did my entered data disappear during process creation?
 
-> [!WARNING]
-> Use `Anonymous` only when policy allows identity flow without personal code.
+The old manual highlighted this correctly: long idle time during creation can cause the page or session to expire, depending on tenant security policy.
 
-## Can I delete a process from UI?
-Typical user flow is to `Cancel` an active process. Full delete/archive behavior is configuration-dependent.
+What to do:
+- restart the process setup
+- avoid leaving the form idle for too long
+- save as draft if the workflow is complex and your tenant supports it
 
-## New user simulation (Nina) 🎭
+## A recipient says they did not receive any email. What should I check?
 
-1. **Q**: Which portal do I use first?  
-   **A**: `https://signbox.<tenant>` internal portal.
-2. **Q**: What is first required action?  
-   **A**: Upload file.
-3. **Q**: Why is `Document type` mandatory?  
-   **A**: It binds process rules/profile.
-4. **Q**: What is recipient group?  
-   **A**: One workflow step containing one or more recipients.
-5. **Q**: What does `Anonymous` change?  
-   **A**: Personal-code matching is skipped, but the task is still limited to the correct invitation link.
-6. **Q**: When should I avoid `Anonymous`?  
-   **A**: When legal traceability requires personal code.
-7. **Q**: Where do I set due date?  
-   **A**: Group header.
-8. **Q**: What is `Sign first`?  
-   **A**: Initiator signs before recipients.
-9. **Q**: How do I find completed items?  
-   **A**: `History` -> open `Status` -> choose `Completed`.
-10. **Q**: What if recipient did not get email?  
-    **A**: Verify email, spam, and workflow stage.
-11. **Q**: Why are buttons disabled?  
-    **A**: Process is likely completed/canceled/read-only.
-12. **Q**: What support data should I send?  
-    **A**: Process ID, timestamp, role, and screenshot.
-13. **Q**: Does `Anonymous` mean anyone with email can sign?  
-    **A**: No. Only a person with the correct invitation link can open the signing task.
-14. **Q**: In anonymous mode, does entered personal code matter?  
-    **A**: No. Personal code matching is skipped in anonymous mode.
-15. **Q**: Why can one colleague see a Group contact/template and another cannot?  
-    **A**: Group scope visibility depends on membership in that exact group.
+Check the following first:
+- correct email address
+- spam or junk folder
+- whether the recipient group is already active
+- whether `Do not notify` was used intentionally
+- whether the process was updated after launch and notifications were suppressed
+
+## I cannot log in to SignBox. What should I do?
+
+Verify:
+- correct portal URL
+- your account is active
+- your country and configured authentication/signing methods are supported
+- you are using the correct invitation link if entering as a recipient
+
+## Smart-ID does not allow signing. Why?
+
+One common cause is that the Smart-ID account is not qualified for signing. Another is that the configured country or signing method does not match the intended recipient configuration.
+
+Check:
+- Smart-ID qualification level
+- recipient country
+- provider availability
+
+## eID card does not work. Why?
+
+This is usually an environment readiness issue rather than a SignBox content issue.
+
+Check:
+- browser compatibility
+- local middleware/readiness for your national eID
+- whether the eID works in other browser-based signing flows
+
+## What is the difference between `Cancel` and `Delete`?
+
+Typical meaning:
+- `Cancel`: stop an active process
+- `Delete`: remove a finished process record or related UI/archival reference, depending on configuration
+
+`Delete` is usually more restricted and should be used more carefully.
+
+## Why do I not see management or admin controls?
+
+Management functions are role-based.
+
+<p align="center">
+  <img src="../assets/annotated/faq-management-menu.png" width="900" alt="Top menu highlighted">
+  <br><em>Figure 3 - Top navigation area where role-based menu items can appear.</em>
+</p>
+
+If you do not see a menu entry:
+- your assigned role may not include that permission
+- the function may not be enabled for your tenant
+
+## Will end users pay for signing in SignBox?
+
+The old manual stated that end-user usage is free of charge. In practice, commercial and service ownership terms depend on the organization operating the SignBox environment, not on the recipient using the invitation flow.
+
+## How are documents and data managed?
+
+Documents processed through SignBox are controlled by the organization operating the environment. Retention, archive destination, and access policy are organization-specific.
+
+If you need:
+- storage location
+- retention duration
+- archive deletion policy
+
+ask your administrator or service owner.
+
+## Who can access a shared document?
+
+Normally only:
+- the intended recipients in the process
+- authorized internal users who manage the process
+
+Access is limited by role, process state, and invitation/security model.
+
+## What support information should I send when reporting an issue?
+
+Send:
+- process ID, if visible
+- exact timestamp and timezone
+- your role in the process
+- exact action that failed
+- error text, if shown
+- screenshot with sensitive data redacted
